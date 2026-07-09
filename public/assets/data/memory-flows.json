@@ -1,0 +1,34 @@
+[
+  {
+    "id": "store-memory",
+    "name": "Store memory animation",
+    "description": "Encoding a new concept through attention, hippocampus, and long-term association.",
+    "scenarioId": "memory-storage",
+    "strength": 0.72,
+    "pathwayIds": ["sensory-pfc", "pfc-hippocampus", "hippocampus-memory"]
+  },
+  {
+    "id": "retrieve-memory",
+    "name": "Retrieve memory animation",
+    "description": "Searching and reconstructing stored knowledge back into working awareness.",
+    "scenarioId": "memory-retrieval",
+    "strength": 0.78,
+    "pathwayIds": ["pfc-hippocampus", "hippocampus-memory", "memory-pfc"]
+  },
+  {
+    "id": "forgetting-pathway",
+    "name": "Forgetting / weak pathway",
+    "description": "A rarely activated association becomes dimmer and harder to retrieve.",
+    "scenarioId": "memory-retrieval",
+    "strength": 0.25,
+    "pathwayIds": ["hippocampus-memory", "memory-pfc"]
+  },
+  {
+    "id": "strengthening-pathway",
+    "name": "Strengthening through repetition",
+    "description": "Repeated activation brightens and thickens the memory route.",
+    "scenarioId": "memory-storage",
+    "strength": 0.95,
+    "pathwayIds": ["sensory-pfc", "pfc-hippocampus", "hippocampus-memory", "memory-pfc"]
+  }
+]

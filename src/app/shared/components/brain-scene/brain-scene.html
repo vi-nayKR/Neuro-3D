@@ -1,0 +1,46 @@
+<section class="brain-stage" #stage aria-label="Interactive 3D brain visualization">
+  <canvas
+    #canvas
+    class="brain-canvas"
+    tabindex="0"
+    aria-label="3D brain scene. Drag to rotate and click glowing regions for details."
+    (pointermove)="onPointerMove($event)"
+    (pointerdown)="onPointerDown()"
+    (pointerleave)="onPointerLeave()"
+  ></canvas>
+
+  <div class="label-layer" aria-hidden="true">
+    @for (label of labels(); track label.id) {
+      <span
+        class="region-label"
+        [class.is-hidden]="!label.visible"
+        [class.is-active]="label.active"
+        [class.is-selected]="label.selected"
+        [class.is-hovered]="label.hovered"
+        [style.--label-color]="label.color"
+        [style.transform]="'translate3d(' + label.x + 'px,' + label.y + 'px,0)'"
+      >
+        {{ label.name }}
+      </span>
+    }
+  </div>
+
+  <div class="scene-badge">
+    <span></span>
+    Neural signal field
+  </div>
+
+  <div
+    class="scene-hint"
+    [class.has-region]="hoveredRegion()"
+    [style.--hint-color]="hoveredRegion()?.color ?? null"
+    aria-live="polite"
+  >
+    @if (hoveredRegion(); as region) {
+      <strong>{{ region.name }}</strong>
+      <span>{{ region.shortDescription }}</span>
+    } @else {
+      <span class="idle-hint">Drag to orbit &middot; scroll to zoom &middot; click a glowing region to inspect it</span>
+    }
+  </div>
+</section>

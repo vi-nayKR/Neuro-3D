@@ -1,0 +1,6 @@
+main {
+  min-height: calc(100vh - 4.1rem);
+  max-width: 1680px;
+  margin: 0 auto;
+  padding: clamp(1rem, 2.4vw, 1.75rem);
+}

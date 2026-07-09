@@ -1,0 +1,58 @@
+@if (state$ | async; as state) {
+  <section class="control-card glass-card" aria-label="Simulation controls">
+    <div class="control-head">
+      <p>Simulation</p>
+      <span class="status-chip" [attr.data-status]="state.status">
+        <i></i>
+        {{ state.status }}
+      </span>
+    </div>
+
+    <label class="field">
+      <span>Scenario</span>
+      <select
+        [ngModel]="state.selectedScenarioId"
+        (ngModelChange)="simulation.selectScenario($event)"
+        aria-label="Select simulation scenario"
+      >
+        @for (scenario of (scenarios$ | async) ?? []; track scenario.id) {
+          <option [value]="scenario.id">{{ scenario.name }}</option>
+        }
+      </select>
+    </label>
+
+    <div class="button-grid">
+      @if (state.status === 'running') {
+        <button type="button" class="primary" (click)="simulation.pause()" aria-label="Pause simulation">
+          Pause
+        </button>
+      } @else {
+        <button type="button" class="primary" (click)="simulation.start()" aria-label="Start simulation">
+          {{ state.status === 'paused' ? 'Resume' : 'Start' }}
+        </button>
+      }
+      <button type="button" (click)="simulation.reset()" aria-label="Reset simulation">Reset</button>
+      <button type="button" (click)="simulation.stepBackward()" aria-label="Step backward">&larr; Back</button>
+      <button type="button" (click)="simulation.stepForward()" aria-label="Step forward">Forward &rarr;</button>
+    </div>
+
+    <label class="field">
+      <span>Speed <em>{{ state.speed | number: '1.1-1' }}x</em></span>
+      <input
+        type="range"
+        min="0.5"
+        max="3"
+        step="0.5"
+        [ngModel]="state.speed"
+        (ngModelChange)="simulation.setSpeed(+$event)"
+        aria-label="Simulation speed"
+      />
+    </label>
+
+    <div class="toggles">
+      <button type="button" [class.active]="state.labelsVisible" (click)="simulation.toggleLabels()">Labels</button>
+      <button type="button" [class.active]="state.pathwaysVisible" (click)="simulation.togglePathways()">Pathways</button>
+      <button type="button" [class.active]="state.explanationMode" (click)="simulation.toggleExplanationMode()">Explain</button>
+    </div>
+  </section>
+}

@@ -1,0 +1,48 @@
+@if (panel$ | async; as panel) {
+  <aside class="explanation-card glass-card" aria-label="Brain region and simulation explanation">
+    @if (panel.selectedRegion) {
+      <div class="section selected" [style.--region-color]="panel.selectedRegion.color">
+        <span class="eyebrow region-eyebrow">Selected region</span>
+        <h2>{{ panel.selectedRegion.name }}</h2>
+        <p>{{ panel.selectedRegion.shortDescription }}</p>
+        <dl>
+          <div>
+            <dt>Role</dt>
+            <dd>{{ panel.selectedRegion.role }}</dd>
+          </div>
+          <div>
+            <dt>Example</dt>
+            <dd>{{ panel.selectedRegion.exampleActivity }}</dd>
+          </div>
+        </dl>
+      </div>
+    } @else {
+      <div class="section empty">
+        <span class="eyebrow">Selected region</span>
+        <p>Click a glowing region in the 3D scene to read what it does.</p>
+      </div>
+    }
+
+    @if (panel.activeStep && panel.activeRegion) {
+      <div class="section step-section">
+        <span class="eyebrow">Active explanation</span>
+        <h3>{{ panel.activeStep.title }}</h3>
+        <p>{{ panel.activeStep.what }}</p>
+        <dl>
+          <div>
+            <dt>Region</dt>
+            <dd>{{ panel.activeRegion.name }}</dd>
+          </div>
+          <div>
+            <dt>Why it matters</dt>
+            <dd>{{ panel.activeStep.why }}</dd>
+          </div>
+          <div>
+            <dt>Analogy</dt>
+            <dd class="analogy">{{ panel.activeStep.analogy }}</dd>
+          </div>
+        </dl>
+      </div>
+    }
+  </aside>
+}

@@ -1,0 +1,53 @@
+@if (selectedDecision$ | async; as selectedDecision) {
+  <section class="decision-layout">
+    <header class="page-header">
+      <p class="eyebrow">Decision making</p>
+      <h1>Choose a road-crossing scenario and watch evidence, memory, emotion, and logic converge.</h1>
+    </header>
+
+    <div class="choice-row" aria-label="Decision scenario choices">
+      @for (decision of (decisions$ | async) ?? []; track decision.id) {
+        <button
+          type="button"
+          [class.active]="decision.id === selectedDecision.id"
+          (click)="runDecision(decision)"
+          [attr.aria-pressed]="decision.id === selectedDecision.id"
+        >
+          <strong>{{ decision.name }}</strong>
+          <span>{{ decision.description }}</span>
+        </button>
+      }
+    </div>
+
+    <app-brain-scene [focusPathwayIds]="selectedDecision.pathwayBias" />
+
+    <aside>
+      <article class="output-card glass-card">
+        <span class="eyebrow">Final decision output</span>
+        <h2>{{ selectedDecision.output.finalAction }}</h2>
+        <dl>
+          <div>
+            <dt>Sensory evidence</dt>
+            <dd>{{ selectedDecision.output.sensoryEvidence }}</dd>
+          </div>
+          <div>
+            <dt>Memory influence</dt>
+            <dd>{{ selectedDecision.output.memoryInfluence }}</dd>
+          </div>
+          <div>
+            <dt>Emotional influence</dt>
+            <dd>{{ selectedDecision.output.emotionalInfluence }}</dd>
+          </div>
+          <div>
+            <dt>Logical evaluation</dt>
+            <dd>{{ selectedDecision.output.logicalEvaluation }}</dd>
+          </div>
+        </dl>
+      </article>
+      <app-simulation-controls />
+      <app-explanation-panel />
+    </aside>
+
+    <app-timeline class="timeline-panel" />
+  </section>
+}

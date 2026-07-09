@@ -1,0 +1,18 @@
+<section class="feature-layout">
+  <header class="page-header">
+    <p class="eyebrow">Information flow</p>
+    <h1>See how a red apple becomes meaning, context, decision, and action.</h1>
+    @if (scenario$ | async; as scenario) {
+      <p class="lede">{{ scenario.scenario }}</p>
+    }
+  </header>
+
+  <app-brain-scene />
+
+  <aside>
+    <app-simulation-controls />
+    <app-explanation-panel />
+  </aside>
+
+  <app-timeline class="timeline-panel" />
+</section>

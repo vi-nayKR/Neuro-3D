@@ -1,0 +1,140 @@
+.decision-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  grid-template-areas:
+    'header header'
+    'choices choices'
+    'scene aside'
+    'timeline timeline';
+  gap: 1.1rem;
+}
+
+header {
+  grid-area: header;
+}
+
+.choice-row {
+  grid-area: choices;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.choice-row button {
+  display: grid;
+  gap: 0.4rem;
+  align-content: start;
+  min-height: 106px;
+  padding: 0.95rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: linear-gradient(165deg, var(--surface-2), var(--surface-1));
+  color: var(--text-1);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color var(--speed-fast) var(--ease-out),
+    box-shadow var(--speed-fast) var(--ease-out),
+    transform var(--speed-fast) var(--ease-spring);
+}
+
+.choice-row button:hover,
+.choice-row button:focus-visible {
+  border-color: rgba(167, 139, 250, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3), var(--glow-accent);
+}
+
+.choice-row button.active {
+  border-color: rgba(167, 139, 250, 0.72);
+  background: linear-gradient(165deg, rgba(167, 139, 250, 0.1), var(--surface-1));
+  box-shadow: 0 0 30px rgba(167, 139, 250, 0.14);
+}
+
+.choice-row button:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+.choice-row strong {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+}
+
+.choice-row span,
+.output-card dd {
+  color: var(--text-2);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
+app-brain-scene {
+  grid-area: scene;
+  min-height: 600px;
+}
+
+aside {
+  grid-area: aside;
+  display: grid;
+  align-content: start;
+  gap: 1.1rem;
+}
+
+.output-card {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1.1rem;
+}
+
+.output-card h2 {
+  margin: 0;
+  color: var(--text-1);
+  font-size: 1.3rem;
+  line-height: 1.2;
+}
+
+.output-card dl,
+.output-card dd {
+  margin: 0;
+}
+
+.output-card dl {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.output-card dt {
+  margin-bottom: 0.16rem;
+  color: var(--text-3);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.timeline-panel {
+  grid-area: timeline;
+}
+
+@media (max-width: 1100px) {
+  .decision-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'header'
+      'choices'
+      'scene'
+      'aside'
+      'timeline';
+  }
+}
+
+@media (max-width: 760px) {
+  .choice-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .choice-row button {
+    transition: none;
+  }
+}

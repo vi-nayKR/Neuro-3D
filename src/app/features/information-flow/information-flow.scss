@@ -1,0 +1,40 @@
+.feature-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  grid-template-areas:
+    'header header'
+    'scene aside'
+    'timeline timeline';
+  gap: 1.1rem;
+}
+
+header {
+  grid-area: header;
+}
+
+app-brain-scene {
+  grid-area: scene;
+  min-height: 620px;
+}
+
+aside {
+  grid-area: aside;
+  display: grid;
+  align-content: start;
+  gap: 1.1rem;
+}
+
+.timeline-panel {
+  grid-area: timeline;
+}
+
+@media (max-width: 1080px) {
+  .feature-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'header'
+      'scene'
+      'aside'
+      'timeline';
+  }
+}

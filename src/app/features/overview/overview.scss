@@ -1,0 +1,88 @@
+.page-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  grid-template-areas:
+    'intro side'
+    'scene side'
+    'timeline timeline';
+  gap: 1.1rem;
+}
+
+.intro {
+  grid-area: intro;
+  align-content: end;
+  min-height: 210px;
+}
+
+.intro h1 {
+  font-size: clamp(2rem, 4vw, 4.2rem);
+  line-height: 1;
+}
+
+.stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 0.35rem;
+}
+
+.stats span {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.4rem;
+  padding: 0.58rem 0.78rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-3);
+  font-size: 0.86rem;
+  transition: border-color var(--speed-fast) var(--ease-out), transform var(--speed-fast) var(--ease-spring);
+}
+
+.stats span:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+}
+
+.stats strong {
+  color: var(--text-1);
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+}
+
+app-brain-scene {
+  grid-area: scene;
+  min-height: 560px;
+}
+
+.side {
+  grid-area: side;
+  display: grid;
+  align-content: start;
+  gap: 1.1rem;
+}
+
+.timeline-panel {
+  grid-area: timeline;
+}
+
+@media (max-width: 1100px) {
+  .page-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'intro'
+      'scene'
+      'side'
+      'timeline';
+  }
+
+  .side {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .side {
+    grid-template-columns: 1fr;
+  }
+}

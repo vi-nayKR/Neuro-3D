@@ -1,0 +1,30 @@
+<section class="timeline glass-card" aria-label="Simulation timeline">
+  <div class="progress-track" aria-hidden="true">
+    <div class="progress-fill" [style.width.%]="((progress$ | async) ?? 0) * 100"></div>
+  </div>
+
+  <div class="steps" #scroller>
+    @for (step of timeline$ | async; track step.id) {
+      <article
+        class="timeline-step"
+        [class.active]="step.status === 'active'"
+        [class.completed]="step.status === 'completed'"
+      >
+        <span class="number">
+          @if (step.status === 'completed') {
+            <svg viewBox="0 0 12 12" width="11" height="11" aria-hidden="true">
+              <path d="M2 6.2 5 9l5-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          } @else {
+            {{ step.order }}
+          }
+        </span>
+        <div>
+          <strong>{{ step.title }}</strong>
+          <p>{{ step.description }}</p>
+          <small>{{ step.status }}</small>
+        </div>
+      </article>
+    }
+  </div>
+</section>

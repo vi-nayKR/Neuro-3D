@@ -1,0 +1,63 @@
+[
+  {
+    "id": "visual-apple",
+    "name": "Visual Information Flow",
+    "category": "visual",
+    "scenario": "User sees a red apple.",
+    "summary": "A visual signal is routed, interpreted, matched with memory, emotionally tagged, evaluated, and turned into possible action.",
+    "steps": [
+      { "id": "visual-1", "order": 1, "regionId": "sensory-input", "nextRegionId": "thalamus", "title": "Eyes receive the signal", "description": "Sensory input receives the red apple signal.", "what": "Light reflected by the apple becomes a neural signal.", "why": "The brain needs a reliable entry point before it can interpret the outside world.", "analogy": "Like a camera sensor capturing raw pixels before software can recognize an image." },
+      { "id": "visual-2", "order": 2, "regionId": "thalamus", "nextRegionId": "visual-cortex", "title": "Thalamus routes the signal", "description": "The thalamus directs visual data toward visual processing.", "what": "The signal is relayed to the visual cortex.", "why": "Routing prevents the brain from treating every signal the same way.", "analogy": "Like a switchboard sending the right call to the right department." },
+      { "id": "visual-3", "order": 3, "regionId": "visual-cortex", "nextRegionId": "hippocampus", "title": "Visual cortex detects features", "description": "Shape, color, edge, and object features are processed.", "what": "The visual cortex identifies red color, rounded shape, and object boundaries.", "why": "Meaning begins with structured features, not raw light.", "analogy": "Like an image recognition system finding color, edges, and shape." },
+      { "id": "visual-4", "order": 4, "regionId": "hippocampus", "nextRegionId": "amygdala", "title": "Hippocampus checks memory", "description": "Memory systems match the object with the concept apple.", "what": "The hippocampus connects the current image with stored knowledge.", "why": "Recognition depends on linking new input with prior experience.", "analogy": "Like searching a personal library for a matching entry." },
+      { "id": "visual-5", "order": 5, "regionId": "amygdala", "nextRegionId": "prefrontal-cortex", "title": "Amygdala adds context", "description": "The object is tagged as safe, familiar, and possibly rewarding.", "what": "Emotional context influences whether the object matters right now.", "why": "The brain prioritizes signals with emotional or survival value.", "analogy": "Like a priority label on an incoming message." },
+      { "id": "visual-6", "order": 6, "regionId": "prefrontal-cortex", "nextRegionId": "motor-cortex", "title": "Prefrontal cortex decides", "description": "Goals, hunger, context, and memory are compared.", "what": "Decision systems evaluate whether to eat, ignore, or save the apple.", "why": "Flexible behavior requires weighing evidence against goals.", "analogy": "Like a project manager comparing options before assigning work." },
+      { "id": "visual-7", "order": 7, "regionId": "motor-cortex", "title": "Motor cortex prepares action", "description": "A movement plan is prepared if action is chosen.", "what": "Motor areas prepare reaching, grasping, or no movement.", "why": "Decisions need translation into body-ready commands.", "analogy": "Like turning a decision into instructions for a robotic arm." }
+    ]
+  },
+  {
+    "id": "memory-storage",
+    "name": "Memory Storage Flow",
+    "category": "memory-storage",
+    "scenario": "User learns a new concept.",
+    "summary": "Attention and hippocampal encoding help a new idea become a stronger long-term association.",
+    "steps": [
+      { "id": "storage-1", "order": 1, "regionId": "sensory-input", "nextRegionId": "prefrontal-cortex", "title": "Concept enters attention", "description": "Sensory input receives a new concept.", "what": "Words, images, or examples enter working awareness.", "why": "Learning starts when information becomes available to attention.", "analogy": "Like opening a file before editing it." },
+      { "id": "storage-2", "order": 2, "regionId": "prefrontal-cortex", "nextRegionId": "hippocampus", "title": "Attention focuses", "description": "The prefrontal cortex filters distraction and holds the idea active.", "what": "Attention stabilizes the new concept long enough to encode it.", "why": "Unattended information is less likely to become durable memory.", "analogy": "Like pinning an important note on the screen." },
+      { "id": "storage-3", "order": 3, "regionId": "hippocampus", "nextRegionId": "long-term-memory", "title": "Hippocampus encodes", "description": "The hippocampus binds details into a retrievable pattern.", "what": "Different details are linked into a coherent memory trace.", "why": "Binding lets the brain reconstruct the concept later.", "analogy": "Like creating an index card that points to connected pages." },
+      { "id": "storage-4", "order": 4, "regionId": "long-term-memory", "nextRegionId": "hippocampus", "title": "Associations strengthen", "description": "Long-term networks store and connect the concept.", "what": "Distributed cortical networks add meaning and associations.", "why": "Durable knowledge is stored across connected patterns.", "analogy": "Like adding backlinks across a knowledge base." },
+      { "id": "storage-5", "order": 5, "regionId": "hippocampus", "nextRegionId": "long-term-memory", "title": "Repetition reinforces", "description": "Repeated activation strengthens the pathway.", "what": "Each recall or practice pass makes the route easier to activate.", "why": "Memory strength grows through repeated coordinated firing.", "analogy": "Like a trail becoming clearer the more people walk it." }
+    ]
+  },
+  {
+    "id": "memory-retrieval",
+    "name": "Memory Retrieval Flow",
+    "category": "memory-retrieval",
+    "scenario": "User remembers a friend's name.",
+    "summary": "A goal-driven search reactivates stored associations and returns a name with context.",
+    "steps": [
+      { "id": "retrieval-1", "order": 1, "regionId": "prefrontal-cortex", "nextRegionId": "hippocampus", "title": "PFC asks for memory", "description": "The prefrontal cortex defines the retrieval goal.", "what": "The brain asks: what is this person's name?", "why": "Retrieval is guided by current goals and cues.", "analogy": "Like typing a search query." },
+      { "id": "retrieval-2", "order": 2, "regionId": "hippocampus", "nextRegionId": "long-term-memory", "title": "Hippocampus searches traces", "description": "Related memory traces are cued and compared.", "what": "Face, place, voice, and context cues narrow the search.", "why": "Memories are reconstructed from related cues.", "analogy": "Like finding a contact by photo, location, and notes." },
+      { "id": "retrieval-3", "order": 3, "regionId": "long-term-memory", "nextRegionId": "amygdala", "title": "Stored information reactivates", "description": "The long-term network reactivates the associated name.", "what": "Distributed knowledge patterns become active again.", "why": "Remembering means reactivating a stored pattern, not replaying a video.", "analogy": "Like restoring a saved workspace." },
+      { "id": "retrieval-4", "order": 4, "regionId": "amygdala", "nextRegionId": "prefrontal-cortex", "title": "Emotion adds context", "description": "Familiarity or social emotion can shape confidence.", "what": "The emotional system marks whether the memory feels familiar.", "why": "Emotional tags can help prioritize and validate recall.", "analogy": "Like a confidence marker beside a search result." },
+      { "id": "retrieval-5", "order": 5, "regionId": "prefrontal-cortex", "title": "Retrieved memory returns", "description": "The prefrontal cortex receives and uses the remembered name.", "what": "The recalled name enters conscious use.", "why": "A memory becomes useful when it can guide behavior.", "analogy": "Like selecting the right contact and using it in a message." }
+    ]
+  },
+  {
+    "id": "road-decision",
+    "name": "Decision-Making Flow",
+    "category": "decision",
+    "scenario": "User decides whether to cross a road.",
+    "summary": "Sensory evidence, memory, emotion, and logic converge into a movement decision.",
+    "steps": [
+      { "id": "decision-1", "order": 1, "regionId": "sensory-input", "nextRegionId": "thalamus", "title": "Senses detect traffic", "description": "Eyes and ears detect cars, sound, and movement.", "what": "The brain receives visual and auditory road cues.", "why": "Decisions need current evidence from the environment.", "analogy": "Like sensors feeding a driving-assistance system." },
+      { "id": "decision-2", "order": 2, "regionId": "thalamus", "nextRegionId": "visual-cortex", "title": "Thalamus routes cues", "description": "The thalamus routes traffic information to sensory cortices.", "what": "Visual and auditory streams are sent to specialized processors.", "why": "Fast routing helps the brain separate what it sees from what it hears.", "analogy": "Like a traffic controller splitting lanes." },
+      { "id": "decision-3", "order": 3, "regionId": "visual-cortex", "nextRegionId": "auditory-cortex", "title": "Visual motion is processed", "description": "The visual cortex estimates car position and movement.", "what": "Motion, distance, and direction are analyzed.", "why": "Crossing safely depends on predicting moving objects.", "analogy": "Like a motion tracker estimating trajectory." },
+      { "id": "decision-4", "order": 4, "regionId": "auditory-cortex", "nextRegionId": "hippocampus", "title": "Sound is interpreted", "description": "The auditory cortex detects horns and engine direction.", "what": "Sound cues add urgency and direction information.", "why": "Hearing can reveal threats outside direct view.", "analogy": "Like an alert system catching off-screen signals." },
+      { "id": "decision-5", "order": 5, "regionId": "hippocampus", "nextRegionId": "amygdala", "title": "Memory retrieves road rules", "description": "The hippocampus retrieves past knowledge and experiences.", "what": "Stored rules and memories shape the interpretation.", "why": "Past learning helps predict danger and appropriate action.", "analogy": "Like consulting previous case examples." },
+      { "id": "decision-6", "order": 6, "regionId": "amygdala", "nextRegionId": "prefrontal-cortex", "title": "Risk is evaluated", "description": "The amygdala adds danger and urgency signals.", "what": "Potential threat is marked as low, uncertain, or high.", "why": "Emotion helps prioritize safety-relevant decisions.", "analogy": "Like a warning light on a dashboard." },
+      { "id": "decision-7", "order": 7, "regionId": "prefrontal-cortex", "nextRegionId": "motor-cortex", "title": "Logic compares options", "description": "The prefrontal cortex weighs risk, goal, timing, and rules.", "what": "The brain chooses wait, cross, or gather more evidence.", "why": "Controlled decisions balance urgency with long-term goals.", "analogy": "Like a planner comparing safety, time, and objective." },
+      { "id": "decision-8", "order": 8, "regionId": "motor-cortex", "title": "Action signal is sent", "description": "The motor cortex prepares the final movement.", "what": "Movement systems prepare stepping forward or staying still.", "why": "A decision must become a concrete body command.", "analogy": "Like sending final instructions to an actuator." }
+    ]
+  }
+]

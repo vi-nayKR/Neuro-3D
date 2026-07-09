@@ -1,0 +1,87 @@
+.explanation-card {
+  display: grid;
+  gap: 1rem;
+  padding: 1.1rem;
+}
+
+.section {
+  display: grid;
+  gap: 0.65rem;
+  animation: rise-in 360ms var(--ease-out) both;
+}
+
+.section + .section {
+  padding-top: 1rem;
+  border-top: 1px solid rgba(167, 139, 250, 0.14);
+}
+
+.section.selected {
+  padding-left: 0.85rem;
+  border-left: 2px solid color-mix(in srgb, var(--region-color, #a99bf5), transparent 25%);
+}
+
+.region-eyebrow {
+  color: var(--region-color, var(--green));
+}
+
+.section.empty p {
+  color: var(--text-3);
+  font-style: italic;
+}
+
+h2,
+h3,
+p,
+dl,
+dd {
+  margin: 0;
+}
+
+h2,
+h3 {
+  color: var(--text-1);
+  line-height: 1.15;
+}
+
+h2 {
+  font-size: 1.18rem;
+}
+
+h3 {
+  font-size: 1rem;
+}
+
+p,
+dd {
+  color: var(--text-2);
+  font-size: 0.88rem;
+  line-height: 1.55;
+}
+
+dl {
+  display: grid;
+  gap: 0.75rem;
+}
+
+dt {
+  margin-bottom: 0.18rem;
+  color: var(--text-3);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.analogy {
+  padding: 0.55rem 0.7rem;
+  border-left: 2px solid rgba(34, 211, 238, 0.55);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  background: rgba(34, 211, 238, 0.08);
+  font-style: italic;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section {
+    animation: none;
+  }
+}

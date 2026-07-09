@@ -1,0 +1,158 @@
+.memory-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 330px;
+  grid-template-areas:
+    'header header'
+    'tools tools'
+    'scene aside'
+    'timeline timeline';
+  gap: 1.1rem;
+}
+
+header {
+  grid-area: header;
+}
+
+.memory-tools {
+  grid-area: tools;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.memory-tools button {
+  display: grid;
+  gap: 0.35rem;
+  align-content: start;
+  min-height: 130px;
+  padding: 0.95rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: linear-gradient(165deg, var(--surface-2), var(--surface-1));
+  color: var(--text-1);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color var(--speed-fast) var(--ease-out),
+    box-shadow var(--speed-fast) var(--ease-out),
+    transform var(--speed-fast) var(--ease-spring);
+}
+
+.memory-tools button:hover,
+.memory-tools button:focus-visible {
+  border-color: rgba(251, 191, 36, 0.5);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3), 0 0 24px rgba(251, 191, 36, 0.08);
+}
+
+.memory-tools button.active {
+  border-color: rgba(251, 191, 36, 0.78);
+  background: linear-gradient(165deg, rgba(251, 191, 36, 0.1), var(--surface-1));
+  box-shadow: 0 0 28px rgba(251, 191, 36, 0.14);
+}
+
+.memory-tools button:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+.memory-tools strong {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+}
+
+.memory-tools span,
+.strength-card p {
+  color: var(--text-3);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+
+.memory-tools em {
+  margin-top: auto;
+  color: var(--amber);
+  font-size: 0.76rem;
+  font-style: normal;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+app-brain-scene {
+  grid-area: scene;
+  min-height: 600px;
+}
+
+aside {
+  grid-area: aside;
+  display: grid;
+  align-content: start;
+  gap: 1.1rem;
+}
+
+.strength-card {
+  display: grid;
+  gap: 0.65rem;
+  padding: 1.1rem;
+}
+
+.strength-card > strong {
+  color: var(--text-1);
+  font-family: var(--font-display);
+  font-size: 2.1rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.strength-card p {
+  margin: 0;
+}
+
+.meter {
+  height: 0.58rem;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.meter::before {
+  display: block;
+  width: var(--strength);
+  height: 100%;
+  border-radius: inherit;
+  content: '';
+  background: linear-gradient(90deg, var(--pink), var(--amber), var(--green));
+  box-shadow: 0 0 14px rgba(251, 191, 36, 0.35);
+  transition: width 700ms var(--ease-out);
+}
+
+.timeline-panel {
+  grid-area: timeline;
+}
+
+@media (max-width: 1100px) {
+  .memory-layout {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'header'
+      'tools'
+      'scene'
+      'aside'
+      'timeline';
+  }
+
+  .memory-tools {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .memory-tools {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .memory-tools button,
+  .meter::before {
+    transition: none;
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "regions": [
+    {
+      "id": "sensory-input",
+      "name": "Sensory Input",
+      "shortDescription": "The gateway for signals from eyes, ears, skin, and body.",
+      "role": "Collects raw signals and starts the flow of information toward routing and interpretation systems.",
+      "position": { "x": -3.4, "y": -0.4, "z": 0.15 },
+      "color": "#28d7ff",
+      "relatedPathways": ["sensory-thalamus", "sensory-pfc"],
+      "exampleActivity": "Light from a red apple becomes neural activity from the eyes."
+    },
+    {
+      "id": "visual-cortex",
+      "name": "Visual Cortex",
+      "shortDescription": "Processes shapes, colors, edges, depth, and motion.",
+      "role": "Transforms visual signals into recognizable visual features before memory and decision systems add meaning.",
+      "position": { "x": 2.9, "y": -0.65, "z": -0.5 },
+      "color": "#7c5cff",
+      "relatedPathways": ["thalamus-visual", "visual-hippocampus", "visual-pfc"],
+      "exampleActivity": "Recognizes that the object is round, red, and apple-shaped."
+    },
+    {
+      "id": "auditory-cortex",
+      "name": "Auditory Cortex",
+      "shortDescription": "Interprets sound frequency, rhythm, direction, and speech cues.",
+      "role": "Turns sound waves into meaningful auditory patterns that can affect emotion, memory, and action.",
+      "position": { "x": 1.8, "y": -1.15, "z": 0.85 },
+      "color": "#f9d65c",
+      "relatedPathways": ["thalamus-auditory", "auditory-amygdala", "auditory-pfc"],
+      "exampleActivity": "Detects the urgency of a car horn while crossing a street."
+    },
+    {
+      "id": "thalamus",
+      "name": "Thalamus",
+      "shortDescription": "A central relay station for incoming sensory information.",
+      "role": "Routes incoming signals toward specialized processing areas and helps regulate attention.",
+      "position": { "x": -1.1, "y": -0.2, "z": 0.35 },
+      "color": "#1ee6a6",
+      "relatedPathways": ["sensory-thalamus", "thalamus-visual", "thalamus-auditory"],
+      "exampleActivity": "Directs visual traffic to the visual cortex and sound signals to the auditory cortex."
+    },
+    {
+      "id": "hippocampus",
+      "name": "Hippocampus",
+      "shortDescription": "Forms, organizes, and retrieves memories.",
+      "role": "Links new information with existing knowledge so experiences can be stored and later reconstructed.",
+      "position": { "x": 0.55, "y": -0.75, "z": 1.05 },
+      "color": "#ff8a4d",
+      "relatedPathways": ["visual-hippocampus", "pfc-hippocampus", "hippocampus-memory"],
+      "exampleActivity": "Matches the red object with the stored concept of apple."
+    },
+    {
+      "id": "amygdala",
+      "name": "Amygdala",
+      "shortDescription": "Evaluates emotional and threat-related meaning.",
+      "role": "Adds urgency, familiarity, fear, reward, and emotional context to perception and decisions.",
+      "position": { "x": 0.1, "y": -1.28, "z": 1.35 },
+      "color": "#ff4f81",
+      "relatedPathways": ["hippocampus-amygdala", "amygdala-pfc", "auditory-amygdala"],
+      "exampleActivity": "Marks a situation as safe, familiar, risky, or urgent."
+    },
+    {
+      "id": "prefrontal-cortex",
+      "name": "Prefrontal Cortex",
+      "shortDescription": "Plans, compares options, focuses attention, and makes decisions.",
+      "role": "Integrates sensory evidence, memory, emotion, and goals into controlled action choices.",
+      "position": { "x": -2.35, "y": 0.9, "z": -0.1 },
+      "color": "#66ff73",
+      "relatedPathways": ["visual-pfc", "amygdala-pfc", "memory-pfc", "pfc-motor"],
+      "exampleActivity": "Decides whether to eat the apple, ignore it, wait, or move."
+    },
+    {
+      "id": "motor-cortex",
+      "name": "Motor Cortex",
+      "shortDescription": "Prepares and sends voluntary movement commands.",
+      "role": "Converts decisions into action plans for muscles and coordinated behavior.",
+      "position": { "x": -0.55, "y": 1.45, "z": -0.3 },
+      "color": "#ffed4a",
+      "relatedPathways": ["pfc-motor", "sensory-motor"],
+      "exampleActivity": "Prepares reaching for the apple or stepping back from the road."
+    },
+    {
+      "id": "long-term-memory",
+      "name": "Long-Term Memory Network",
+      "shortDescription": "Distributed storage of knowledge, associations, and experiences.",
+      "role": "Represents durable patterns across cortex that can be strengthened, weakened, and reactivated.",
+      "position": { "x": 2.4, "y": 0.9, "z": 0.25 },
+      "color": "#ffb000",
+      "relatedPathways": ["hippocampus-memory", "memory-pfc", "memory-amygdala"],
+      "exampleActivity": "Stores that apples are edible, sweet, and familiar."
+    }
+  ],
+  "pathways": [
+    { "id": "sensory-thalamus", "from": "sensory-input", "to": "thalamus", "label": "sensory relay", "strength": 0.84 },
+    { "id": "thalamus-visual", "from": "thalamus", "to": "visual-cortex", "label": "visual routing", "strength": 0.78 },
+    { "id": "thalamus-auditory", "from": "thalamus", "to": "auditory-cortex", "label": "auditory routing", "strength": 0.72 },
+    { "id": "visual-hippocampus", "from": "visual-cortex", "to": "hippocampus", "label": "recognition match", "strength": 0.75 },
+    { "id": "hippocampus-amygdala", "from": "hippocampus", "to": "amygdala", "label": "context", "strength": 0.62 },
+    { "id": "auditory-amygdala", "from": "auditory-cortex", "to": "amygdala", "label": "sound urgency", "strength": 0.68 },
+    { "id": "amygdala-pfc", "from": "amygdala", "to": "prefrontal-cortex", "label": "emotional signal", "strength": 0.7 },
+    { "id": "visual-pfc", "from": "visual-cortex", "to": "prefrontal-cortex", "label": "visual evidence", "strength": 0.66 },
+    { "id": "pfc-motor", "from": "prefrontal-cortex", "to": "motor-cortex", "label": "action plan", "strength": 0.82 },
+    { "id": "sensory-pfc", "from": "sensory-input", "to": "prefrontal-cortex", "label": "attention", "strength": 0.52 },
+    { "id": "pfc-hippocampus", "from": "prefrontal-cortex", "to": "hippocampus", "label": "memory query", "strength": 0.76 },
+    { "id": "hippocampus-memory", "from": "hippocampus", "to": "long-term-memory", "label": "encoding", "strength": 0.64 },
+    { "id": "memory-pfc", "from": "long-term-memory", "to": "prefrontal-cortex", "label": "retrieval", "strength": 0.74 },
+    { "id": "memory-amygdala", "from": "long-term-memory", "to": "amygdala", "label": "emotional memory", "strength": 0.58 },
+    { "id": "sensory-motor", "from": "sensory-input", "to": "motor-cortex", "label": "fast response", "strength": 0.48 }
+  ]
+}

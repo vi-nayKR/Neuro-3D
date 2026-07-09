@@ -1,0 +1,38 @@
+@if (selectedFlow$ | async; as selectedFlow) {
+  <section class="memory-layout">
+    <header class="page-header">
+      <p class="eyebrow">Memory module</p>
+      <h1>Watch memory traces store, retrieve, fade, and strengthen through repeated activation.</h1>
+    </header>
+
+    <div class="memory-tools">
+      @for (flow of (memoryFlows$ | async) ?? []; track flow.id) {
+        <button
+          type="button"
+          [class.active]="flow.id === selectedFlow.id"
+          (click)="runFlow(flow)"
+          [attr.aria-pressed]="flow.id === selectedFlow.id"
+        >
+          <strong>{{ flow.name }}</strong>
+          <span>{{ flow.description }}</span>
+          <em>Strength {{ flow.strength | number: '1.0-2' }}</em>
+        </button>
+      }
+    </div>
+
+    <app-brain-scene [focusPathwayIds]="selectedFlow.pathwayIds" [memoryStrength]="selectedFlow.strength" />
+
+    <aside>
+      <div class="strength-card glass-card">
+        <span class="eyebrow">Pathway strength</span>
+        <strong>{{ selectedFlow.strength | number: '1.0-2' }}</strong>
+        <div class="meter" [style.--strength]="selectedFlow.strength * 100 + '%'"></div>
+        <p>{{ selectedFlow.description }}</p>
+      </div>
+      <app-simulation-controls />
+      <app-explanation-panel />
+    </aside>
+
+    <app-timeline class="timeline-panel" />
+  </section>
+}

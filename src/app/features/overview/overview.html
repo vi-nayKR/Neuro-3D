@@ -1,0 +1,21 @@
+<section class="page-grid">
+  <div class="intro page-header">
+    <p class="eyebrow">NeuroFlow 3D</p>
+    <h1>An interactive 3D journey through how the brain receives, processes, remembers, and decides.</h1>
+    <p class="lede">
+      Explore a glowing brain map, click regions for plain-language explanations, and run animated signal flows that connect perception, memory, emotion, planning, and action.
+    </p>
+    <div class="stats" aria-label="Project stats">
+      @for (stat of stats; track stat.label) {
+        <span><strong>{{ stat.value }}</strong>{{ stat.label }}</span>
+      }
+    </div>
+  </div>
+
+  <app-brain-scene />
+  <aside class="side">
+    <app-simulation-controls />
+    <app-explanation-panel />
+  </aside>
+  <app-timeline class="timeline-panel" />
+</section>

@@ -1,0 +1,44 @@
+[
+  {
+    "id": "safe-crossing",
+    "name": "Safe road crossing",
+    "description": "Cars are distant, the walk signal is active, and sound cues are calm.",
+    "scenarioId": "road-decision",
+    "pathwayBias": ["sensory-thalamus", "thalamus-visual", "visual-pfc", "pfc-motor"],
+    "output": {
+      "sensoryEvidence": "Open crosswalk, slow distant cars, steady walk signal.",
+      "memoryInfluence": "Past road rules indicate this is the right crossing window.",
+      "emotionalInfluence": "Low threat, familiar context, calm urgency.",
+      "logicalEvaluation": "Risk is low and the goal can be completed safely.",
+      "finalAction": "Cross with attention maintained."
+    }
+  },
+  {
+    "id": "risky-crossing",
+    "name": "Risky road crossing",
+    "description": "A fast car is approaching and a horn is heard.",
+    "scenarioId": "road-decision",
+    "pathwayBias": ["auditory-amygdala", "hippocampus-amygdala", "amygdala-pfc", "pfc-motor"],
+    "output": {
+      "sensoryEvidence": "Fast vehicle motion, loud horn, short crossing gap.",
+      "memoryInfluence": "Past safety knowledge says fast traffic can close distance quickly.",
+      "emotionalInfluence": "High threat signal increases caution.",
+      "logicalEvaluation": "Risk outweighs the goal of crossing immediately.",
+      "finalAction": "Wait and reassess."
+    }
+  },
+  {
+    "id": "unknown-crossing",
+    "name": "Unknown situation",
+    "description": "Visibility is limited and cues conflict.",
+    "scenarioId": "road-decision",
+    "pathwayBias": ["sensory-thalamus", "thalamus-auditory", "pfc-hippocampus", "amygdala-pfc"],
+    "output": {
+      "sensoryEvidence": "Partial view, ambiguous engine sound, uncertain signal timing.",
+      "memoryInfluence": "Past experience suggests gathering more evidence before acting.",
+      "emotionalInfluence": "Moderate uncertainty raises alertness.",
+      "logicalEvaluation": "More information is needed before committing.",
+      "finalAction": "Pause, scan both directions, then decide."
+    }
+  }
+]
