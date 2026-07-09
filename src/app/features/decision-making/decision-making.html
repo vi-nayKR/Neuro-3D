@@ -3,6 +3,9 @@
     <header class="page-header">
       <p class="eyebrow">Decision making</p>
       <h1>Choose a road-crossing scenario and watch evidence, memory, emotion, and logic converge.</h1>
+      <p class="lede">
+        Each choice highlights a different balance of sensory confidence, remembered rules, emotional urgency, and prefrontal planning before action is prepared.
+      </p>
     </header>
 
     <div class="choice-row" aria-label="Decision scenario choices">
@@ -25,6 +28,13 @@
       <article class="output-card glass-card">
         <span class="eyebrow">Final decision output</span>
         <h2>{{ selectedDecision.output.finalAction }}</h2>
+        <p class="decision-summary">{{ selectedDecision.description }}</p>
+        <div class="decision-badges" aria-label="Decision factors">
+          <span>Sensory</span>
+          <span>Memory</span>
+          <span>Emotion</span>
+          <span>Logic</span>
+        </div>
         <dl>
           <div>
             <dt>Sensory evidence</dt>

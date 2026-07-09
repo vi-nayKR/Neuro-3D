@@ -1,7 +1,18 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
 .control-card {
   display: grid;
+  align-content: stretch;
+  grid-template-rows: auto auto auto auto auto;
   gap: 1rem;
   padding: 1.1rem;
+}
+
+.toggles {
+  align-self: end;
 }
 
 .control-head {

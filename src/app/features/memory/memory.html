@@ -3,6 +3,9 @@
     <header class="page-header">
       <p class="eyebrow">Memory module</p>
       <h1>Watch memory traces store, retrieve, fade, and strengthen through repeated activation.</h1>
+      <p class="lede">
+        Memory is shown as a changing pathway, not a static file. Compare each mode to see how attention, hippocampal indexing, cortical storage, and repetition affect recall.
+      </p>
     </header>
 
     <div class="memory-tools">
@@ -28,6 +31,24 @@
         <strong>{{ selectedFlow.strength | number: '1.0-2' }}</strong>
         <div class="meter" [style.--strength]="selectedFlow.strength * 100 + '%'"></div>
         <p>{{ selectedFlow.description }}</p>
+        <dl>
+          <div>
+            <dt>Interpretation</dt>
+            <dd>
+              @if (selectedFlow.strength >= 0.85) {
+                Highly reinforced route with fast reactivation.
+              } @else if (selectedFlow.strength >= 0.55) {
+                Usable association that still benefits from repetition.
+              } @else {
+                Weak trace that needs stronger cues or practice.
+              }
+            </dd>
+          </div>
+          <div>
+            <dt>Focused pathways</dt>
+            <dd>{{ selectedFlow.pathwayIds.length }} highlighted connections</dd>
+          </div>
+        </dl>
       </div>
       <app-simulation-controls />
       <app-explanation-panel />

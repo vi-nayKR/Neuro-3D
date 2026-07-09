@@ -1,12 +1,18 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
 .memory-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 330px;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 340px);
   grid-template-areas:
     'header header'
     'tools tools'
     'scene aside'
     'timeline timeline';
-  gap: 1.1rem;
+  align-items: start;
+  gap: 0.9rem;
 }
 
 header {
@@ -78,20 +84,34 @@ header {
 
 app-brain-scene {
   grid-area: scene;
-  min-height: 600px;
+  height: clamp(460px, 58vh, 640px);
 }
 
 aside {
   grid-area: aside;
-  display: grid;
-  align-content: start;
-  gap: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
 }
 
 .strength-card {
   display: grid;
   gap: 0.65rem;
   padding: 1.1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.strength-card::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: '';
+  background: radial-gradient(circle at 100% 0%, rgba(251, 191, 36, 0.13), transparent 9rem);
+}
+
+.strength-card > * {
+  position: relative;
 }
 
 .strength-card > strong {
@@ -102,8 +122,32 @@ aside {
   line-height: 1;
 }
 
-.strength-card p {
+.strength-card p,
+.strength-card dd {
   margin: 0;
+}
+
+.strength-card dl {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+  padding-top: 0.7rem;
+  border-top: 1px solid var(--border-soft);
+}
+
+.strength-card dt {
+  margin-bottom: 0.16rem;
+  color: var(--text-3);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.strength-card dd {
+  color: var(--text-2);
+  font-size: 0.84rem;
+  line-height: 1.45;
 }
 
 .meter {

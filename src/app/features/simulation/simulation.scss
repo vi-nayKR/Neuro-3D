@@ -1,27 +1,75 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
 .sim-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 330px;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 340px);
   grid-template-areas:
     'header header'
+    'briefing briefing'
     'scene aside'
     'timeline timeline';
-  gap: 1.1rem;
+  align-items: start;
+  gap: 0.9rem;
 }
 
 header {
   grid-area: header;
 }
 
+.briefing-grid {
+  grid-area: briefing;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.briefing-grid article {
+  display: grid;
+  gap: 0.38rem;
+  min-height: 126px;
+  padding: 0.95rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  background: linear-gradient(165deg, rgba(34, 211, 238, 0.06), rgba(255, 255, 255, 0.025));
+}
+
+.briefing-grid span {
+  color: var(--accent-2);
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.briefing-grid h2,
+.briefing-grid p {
+  margin: 0;
+}
+
+.briefing-grid h2 {
+  color: var(--text-1);
+  font-size: 0.98rem;
+  line-height: 1.2;
+}
+
+.briefing-grid p {
+  color: var(--text-3);
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
 app-brain-scene {
   grid-area: scene;
-  min-height: 620px;
+  height: clamp(460px, 58vh, 640px);
 }
 
 aside {
   grid-area: aside;
-  display: grid;
-  align-content: start;
-  gap: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
 }
 
 .timeline-panel {
@@ -33,8 +81,13 @@ aside {
     grid-template-columns: 1fr;
     grid-template-areas:
       'header'
+      'briefing'
       'scene'
       'aside'
       'timeline';
+  }
+
+  .briefing-grid {
+    grid-template-columns: 1fr;
   }
 }

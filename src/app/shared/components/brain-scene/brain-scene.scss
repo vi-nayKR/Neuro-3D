@@ -1,11 +1,12 @@
 :host {
   display: block;
-  min-height: 100%;
+  height: clamp(460px, 58vh, 640px);
+  min-height: 0;
 }
 
 .brain-stage {
   position: relative;
-  min-height: 420px;
+  min-height: 0;
   height: 100%;
   overflow: hidden;
   border: 1px solid rgba(167, 139, 250, 0.2);
@@ -177,8 +178,12 @@
 }
 
 @media (max-width: 760px) {
+  :host {
+    height: clamp(380px, 56vh, 500px);
+  }
+
   .brain-stage {
-    min-height: 360px;
+    min-height: 0;
   }
 
   .region-label,

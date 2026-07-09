@@ -1,9 +1,23 @@
 @if (panel$ | async; as panel) {
   <aside class="explanation-card glass-card" aria-label="Brain region and simulation explanation">
+    <div class="panel-head">
+      <div>
+        <span class="eyebrow">Neural insight</span>
+        <h2>{{ panel.activeScenario?.name ?? 'Explore the model' }}</h2>
+      </div>
+      @if (panel.progressLabel) {
+        <span class="progress-pill">Step {{ panel.progressLabel }}</span>
+      }
+    </div>
+
+    @if (panel.activeScenario) {
+      <p class="scenario-summary">{{ panel.activeScenario.summary }}</p>
+    }
+
     @if (panel.selectedRegion) {
       <div class="section selected" [style.--region-color]="panel.selectedRegion.color">
         <span class="eyebrow region-eyebrow">Selected region</span>
-        <h2>{{ panel.selectedRegion.name }}</h2>
+        <h3>{{ panel.selectedRegion.name }}</h3>
         <p>{{ panel.selectedRegion.shortDescription }}</p>
         <dl>
           <div>
@@ -15,11 +29,22 @@
             <dd>{{ panel.selectedRegion.exampleActivity }}</dd>
           </div>
         </dl>
+        @if (panel.selectedPathways.length) {
+          <div class="pathway-list" aria-label="Connected pathways">
+            <span>Connected pathways</span>
+            <div>
+              @for (pathway of panel.selectedPathways; track pathway.id) {
+                <em>{{ pathway.label }}</em>
+              }
+            </div>
+          </div>
+        }
       </div>
     } @else {
       <div class="section empty">
         <span class="eyebrow">Selected region</span>
-        <p>Click a glowing region in the 3D scene to read what it does.</p>
+        <h3>Click a glowing region to inspect it.</h3>
+        <p>The panel will show the region's role, a real-world example, and the strongest pathways that connect it to the rest of the simulation.</p>
       </div>
     }
 
@@ -28,11 +53,11 @@
         <span class="eyebrow">Active explanation</span>
         <h3>{{ panel.activeStep.title }}</h3>
         <p>{{ panel.activeStep.what }}</p>
+        <div class="active-region-chip" [style.--region-color]="panel.activeRegion.color">
+          <span></span>
+          {{ panel.activeRegion.name }}
+        </div>
         <dl>
-          <div>
-            <dt>Region</dt>
-            <dd>{{ panel.activeRegion.name }}</dd>
-          </div>
           <div>
             <dt>Why it matters</dt>
             <dd>{{ panel.activeStep.why }}</dd>

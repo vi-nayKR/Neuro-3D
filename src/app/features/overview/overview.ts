@@ -17,4 +17,19 @@ export class OverviewComponent {
     { value: '4', label: 'simulation flows' },
     { value: '15', label: 'neural pathways' }
   ];
+
+  readonly highlights = [
+    {
+      title: 'Perception to meaning',
+      body: 'Follow raw sensory input as it becomes shape, sound, memory context, and emotional priority.'
+    },
+    {
+      title: 'Memory as a network',
+      body: 'Compare encoding, retrieval, fading, and repetition to see why stronger pathways recall faster.'
+    },
+    {
+      title: 'Decisions as convergence',
+      body: 'Watch evidence, emotion, rules, and goals combine before the motor system prepares action.'
+    }
+  ];
 }

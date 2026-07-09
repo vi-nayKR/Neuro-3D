@@ -1,12 +1,18 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
 .decision-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 340px;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 340px);
   grid-template-areas:
     'header header'
     'choices choices'
     'scene aside'
     'timeline timeline';
-  gap: 1.1rem;
+  align-items: start;
+  gap: 0.9rem;
 }
 
 header {
@@ -69,20 +75,36 @@ header {
 
 app-brain-scene {
   grid-area: scene;
-  min-height: 600px;
+  height: clamp(460px, 58vh, 640px);
 }
 
 aside {
   grid-area: aside;
-  display: grid;
-  align-content: start;
-  gap: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
 }
 
 .output-card {
   display: grid;
   gap: 0.85rem;
   padding: 1.1rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.output-card::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: '';
+  background:
+    linear-gradient(135deg, rgba(167, 139, 250, 0.1), transparent 36%),
+    radial-gradient(circle at 100% 10%, rgba(94, 234, 212, 0.08), transparent 10rem);
+}
+
+.output-card > * {
+  position: relative;
 }
 
 .output-card h2 {
@@ -90,6 +112,29 @@ aside {
   color: var(--text-1);
   font-size: 1.3rem;
   line-height: 1.2;
+}
+
+.decision-summary {
+  margin: 0;
+  color: var(--text-2);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.decision-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.42rem;
+}
+
+.decision-badges span {
+  padding: 0.34rem 0.5rem;
+  border: 1px solid rgba(167, 139, 250, 0.18);
+  border-radius: 999px;
+  background: rgba(167, 139, 250, 0.08);
+  color: var(--text-2);
+  font-size: 0.72rem;
+  font-weight: 700;
 }
 
 .output-card dl,

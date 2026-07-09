@@ -1,17 +1,23 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
 .page-grid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 320px;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 340px);
   grid-template-areas:
     'intro side'
     'scene side'
     'timeline timeline';
-  gap: 1.1rem;
+  align-items: start;
+  gap: 0.9rem;
 }
 
 .intro {
   grid-area: intro;
   align-content: end;
-  min-height: 210px;
+  min-height: 240px;
 }
 
 .intro h1 {
@@ -50,16 +56,45 @@
   font-size: 1.05rem;
 }
 
+.highlight-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+  margin-top: 0.4rem;
+}
+
+.highlight-grid article {
+  min-height: 120px;
+  padding: 0.95rem;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-md);
+  background: linear-gradient(165deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.025));
+}
+
+.highlight-grid h2 {
+  margin: 0 0 0.4rem;
+  color: var(--text-1);
+  font-size: 0.96rem;
+  line-height: 1.2;
+}
+
+.highlight-grid p {
+  margin: 0;
+  color: var(--text-3);
+  font-size: 0.84rem;
+  line-height: 1.5;
+}
+
 app-brain-scene {
   grid-area: scene;
-  min-height: 560px;
+  height: clamp(460px, 58vh, 640px);
 }
 
 .side {
   grid-area: side;
-  display: grid;
-  align-content: start;
-  gap: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
 }
 
 .timeline-panel {
@@ -77,7 +112,16 @@ app-brain-scene {
   }
 
   .side {
+    display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-self: auto;
+    min-height: 0;
+    overflow: visible;
+    padding-right: 0;
+  }
+
+  .highlight-grid {
+    grid-template-columns: 1fr;
   }
 }
 

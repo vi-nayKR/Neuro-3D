@@ -3,9 +3,26 @@
     <p class="eyebrow">Information flow</p>
     <h1>See how a red apple becomes meaning, context, decision, and action.</h1>
     @if (scenario$ | async; as scenario) {
-      <p class="lede">{{ scenario.scenario }}</p>
+      <p class="lede">{{ scenario.summary }}</p>
     }
   </header>
+
+  @if (scenario$ | async; as scenario) {
+    <section class="flow-brief glass-card" aria-label="Scenario information">
+      <div>
+        <span class="eyebrow">Scenario</span>
+        <h2>{{ scenario.scenario }}</h2>
+      </div>
+      <p>
+        The animation starts with sensory input, routes through visual processing, checks memory and emotional relevance, then reaches planning and action systems.
+      </p>
+      <div class="flow-metrics">
+        <span><strong>{{ scenario.steps.length }}</strong> processing stages</span>
+        <span><strong>6</strong> major handoffs</span>
+        <span><strong>3</strong> evidence layers</span>
+      </div>
+    </section>
+  }
 
   <app-brain-scene />
 
