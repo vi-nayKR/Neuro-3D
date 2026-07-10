@@ -2,6 +2,7 @@
 
 ## Stack
 
+- Use the Node.js version pinned in `.node-version`; Angular 22 requires Node `22.22.3` or newer within the supported major.
 - Use Angular 22 standalone components, TypeScript, RxJS, Three.js, and component-scoped SCSS.
 - Use Angular signals for synchronous UI state and RxJS for existing asynchronous/data streams.
 - Do not introduce a CSS framework, state library, backend, or translation API without an explicit requirement.

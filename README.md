@@ -68,6 +68,8 @@ AGENTS.md           Project development and verification rules
 
 ## Install
 
+Use Node.js `22.22.3`. The repository's `.node-version` pins this version for Cloudflare Pages and compatible local version managers.
+
 ```bash
 npm install
 ```
@@ -110,10 +112,12 @@ npm test -- --watch=false
    - Framework preset: `Angular`
    - Build command: `npm run build`
    - Build output directory: `dist/neuroflow-3d/browser`
-   - Node.js version: `22`
+   - Node.js version: `22.22.3`
 4. Deploy the project.
 
 `public/_redirects` is copied into the production bundle and returns `index.html` for client-side Angular routes such as `/memory` and `/simulation`. `public/_headers` adds security headers and caching for hashed JavaScript and CSS assets.
+
+Cloudflare Pages reads `.node-version` automatically. If the project has a `NODE_VERSION` environment variable configured in the dashboard, set it to `22.22.3` or remove it so the repository pin is used.
 
 ### Wrangler CLI
 
