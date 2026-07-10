@@ -60,7 +60,6 @@ public/assets/
 Deployment files:
 
 ```text
-public/_redirects   Optional fallback metadata in the browser bundle
 public/_headers     Static cache and security-header metadata
 wrangler.toml       Cloudflare Workers Static Assets configuration
 AGENTS.md           Project development and verification rules
