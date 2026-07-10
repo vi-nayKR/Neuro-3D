@@ -20,14 +20,14 @@
         [style.--label-color]="label.color"
         [style.transform]="'translate3d(' + label.x + 'px,' + label.y + 'px,0)'"
       >
-        {{ label.name }}
+        <em class="label-emoji">{{ label.emoji }}</em>{{ label.name }}
       </span>
     }
   </div>
 
   <div class="scene-badge">
     <span></span>
-    Neural signal field
+    Your brain, up close
   </div>
 
   <div
@@ -37,10 +37,10 @@
     aria-live="polite"
   >
     @if (hoveredRegion(); as region) {
-      <strong>{{ region.name }}</strong>
+      <strong>{{ region.emoji }} {{ region.nickname ?? region.name }}</strong>
       <span>{{ region.shortDescription }}</span>
     } @else {
-      <span class="idle-hint">Drag to orbit &middot; scroll to zoom &middot; click a glowing region to inspect it</span>
+      <span class="idle-hint">Drag to spin the head &middot; scroll in to zoom through the skull and reveal the brain &middot; tap a glowing dot to explore it</span>
     }
   </div>
 </section>

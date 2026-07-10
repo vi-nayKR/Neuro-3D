@@ -2,8 +2,8 @@
   <aside class="explanation-card glass-card" aria-label="Brain region and simulation explanation">
     <div class="panel-head">
       <div>
-        <span class="eyebrow">Neural insight</span>
-        <h2>{{ panel.activeScenario?.name ?? 'Explore the model' }}</h2>
+        <span class="eyebrow">What's happening</span>
+        <h2>{{ panel.activeScenario?.name ?? 'Explore your brain' }}</h2>
       </div>
       @if (panel.progressLabel) {
         <span class="progress-pill">Step {{ panel.progressLabel }}</span>
@@ -16,22 +16,25 @@
 
     @if (panel.selectedRegion) {
       <div class="section selected" [style.--region-color]="panel.selectedRegion.color">
-        <span class="eyebrow region-eyebrow">Selected region</span>
-        <h3>{{ panel.selectedRegion.name }}</h3>
+        <span class="eyebrow region-eyebrow">Brain helper</span>
+        <h3>{{ panel.selectedRegion.emoji }} {{ panel.selectedRegion.nickname ?? panel.selectedRegion.name }}</h3>
+        @if (panel.selectedRegion.nickname) {
+          <p class="real-name">Real name: {{ panel.selectedRegion.name }}</p>
+        }
         <p>{{ panel.selectedRegion.shortDescription }}</p>
         <dl>
           <div>
-            <dt>Role</dt>
+            <dt>What it does</dt>
             <dd>{{ panel.selectedRegion.role }}</dd>
           </div>
           <div>
-            <dt>Example</dt>
+            <dt>For example</dt>
             <dd>{{ panel.selectedRegion.exampleActivity }}</dd>
           </div>
         </dl>
         @if (panel.selectedPathways.length) {
           <div class="pathway-list" aria-label="Connected pathways">
-            <span>Connected pathways</span>
+            <span>Messages it sends and gets</span>
             <div>
               @for (pathway of panel.selectedPathways; track pathway.id) {
                 <em>{{ pathway.label }}</em>
@@ -42,20 +45,20 @@
       </div>
     } @else {
       <div class="section empty">
-        <span class="eyebrow">Selected region</span>
-        <h3>Click a glowing region to inspect it.</h3>
-        <p>The panel will show the region's role, a real-world example, and the strongest pathways that connect it to the rest of the simulation.</p>
+        <span class="eyebrow">Try this</span>
+        <h3>Tap a glowing dot to meet a brain helper. 👆</h3>
+        <p>You'll find out what that part of the brain does, see a fun example, and learn which other helpers it sends messages to.</p>
       </div>
     }
 
     @if (panel.activeStep && panel.activeRegion) {
       <div class="section step-section">
-        <span class="eyebrow">Active explanation</span>
+        <span class="eyebrow">Happening right now</span>
         <h3>{{ panel.activeStep.title }}</h3>
         <p>{{ panel.activeStep.what }}</p>
         <div class="active-region-chip" [style.--region-color]="panel.activeRegion.color">
           <span></span>
-          {{ panel.activeRegion.name }}
+          {{ panel.activeRegion.emoji }} {{ panel.activeRegion.nickname ?? panel.activeRegion.name }}
         </div>
         <dl>
           <div>
@@ -63,7 +66,7 @@
             <dd>{{ panel.activeStep.why }}</dd>
           </div>
           <div>
-            <dt>Analogy</dt>
+            <dt>Think of it like</dt>
             <dd class="analogy">{{ panel.activeStep.analogy }}</dd>
           </div>
         </dl>
