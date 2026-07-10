@@ -125,10 +125,12 @@ The checked-in `wrangler.toml` points to the Angular browser output. After authe
 
 ```bash
 npm run build
-npx wrangler pages deploy
+npx wrangler pages deploy dist/neuroflow-3d/browser --project-name=neuro3d
 ```
 
 Cloudflare preview deployments can use the same output directory. Do not change the Pages output to `dist/neuroflow-3d`; `index.html` is inside its `browser` subdirectory.
+
+The Cloudflare Pages project name is `neuro3d`. The Angular package remains `neuroflow-3d`, which is why the generated output path includes `dist/neuroflow-3d/browser`.
 
 ## Localization
 
