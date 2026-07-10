@@ -67,6 +67,11 @@
   transition: opacity 200ms var(--ease-out), scale 260ms var(--ease-spring), background 200ms var(--ease-out);
 }
 
+.label-emoji {
+  margin-right: 0.28rem;
+  font-style: normal;
+}
+
 .region-label::after {
   position: absolute;
   bottom: -0.55rem;

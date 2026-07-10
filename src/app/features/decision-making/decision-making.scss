@@ -83,6 +83,13 @@ aside {
   display: flex;
   flex-direction: column;
   gap: 0.9rem;
+  // Match the scene height and scroll internally so variable card length
+  // never changes the row height or misaligns the model and timeline.
+  height: clamp(720px, 85vh, 1100px);
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 0.4rem;
+  scrollbar-width: thin;
 }
 
 .output-card {
@@ -169,6 +176,12 @@ aside {
       'scene'
       'aside'
       'timeline';
+  }
+
+  aside {
+    height: auto;
+    overflow: visible;
+    padding-right: 0;
   }
 }
 

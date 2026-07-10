@@ -47,6 +47,7 @@ interface SignalObject {
 interface RegionLabel {
   id: string;
   name: string;
+  emoji: string;
   color: string;
   x: number;
   y: number;
@@ -195,6 +196,7 @@ export class BrainSceneComponent implements AfterViewInit, OnChanges, OnDestroy 
   private lastLabelKey = '';
   private regionGlows = new Map<string, THREE.ShaderMaterial>();
   private shellGlow?: THREE.ShaderMaterial;
+  private lastSignalStepId: string | null = null;
 
   ngAfterViewInit(): void {
     this.reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -343,8 +345,13 @@ export class BrainSceneComponent implements AfterViewInit, OnChanges, OnDestroy 
         this.updatePathwayAppearance();
         this.updateLabels();
 
-        if (activeStep?.nextRegionId && !this.reducedMotion) {
+        // One comet per step change (guard stops duplicates from hover/select emissions).
+        if (activeStep?.nextRegionId && !this.reducedMotion && activeStep.id !== this.lastSignalStepId) {
+          this.lastSignalStepId = activeStep.id;
           this.spawnSignal(activeStep.regionId, activeStep.nextRegionId, regions);
+        }
+        if (!activeStep) {
+          this.lastSignalStepId = null;
         }
       })
     );
@@ -357,7 +364,7 @@ export class BrainSceneComponent implements AfterViewInit, OnChanges, OnDestroy 
       roughness: 0.52,
       metalness: 0.06,
       transparent: true,
-      opacity: 0.46,
+      opacity: 0.32,
       transmission: 0.07,
       thickness: 0.6
     });
@@ -527,25 +534,30 @@ export class BrainSceneComponent implements AfterViewInit, OnChanges, OnDestroy 
     }
 
     const curve = this.animationService.createCurve(from, to);
-    const color = new THREE.Color(from.color);
+    // Brighten toward white so the comet reads clearly over the brain and backdrop.
+    const color = new THREE.Color(from.color).lerp(new THREE.Color('#ffffff'), 0.4);
+    // depthTest:false + high renderOrder keeps the signal visible even through the shell.
     const mesh = new THREE.Mesh(
-      new THREE.SphereGeometry(0.075, 20, 16),
-      new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.95 })
+      new THREE.SphereGeometry(0.14, 24, 18),
+      new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 1, depthTest: false })
     );
+    mesh.renderOrder = 999;
     const glow = new THREE.Mesh(
-      new THREE.SphereGeometry(0.16, 20, 16),
+      new THREE.SphereGeometry(0.44, 24, 18),
       new THREE.MeshBasicMaterial({
         color,
         transparent: true,
-        opacity: 0.28,
+        opacity: 0.5,
+        depthTest: false,
         depthWrite: false,
         blending: THREE.AdditiveBlending
       })
     );
+    glow.renderOrder = 998;
     mesh.add(glow);
     mesh.position.copy(curve.getPoint(0));
     this.scene.add(mesh);
-    this.signals.push({ mesh, glow, curve, startTime: performance.now(), duration: 1100 });
+    this.signals.push({ mesh, glow, curve, startTime: performance.now(), duration: 1500 });
 
     if (this.signals.length > 10) {
       const stale = this.signals.shift();
@@ -590,9 +602,9 @@ export class BrainSceneComponent implements AfterViewInit, OnChanges, OnDestroy 
       const progress = Math.min(1, (now - signal.startTime) / signal.duration);
       const envelope = Math.sin(progress * Math.PI);
       signal.mesh.position.copy(signal.curve.getPoint(progress));
-      signal.mesh.scale.setScalar(1 + envelope * 1.4);
-      (signal.mesh.material as THREE.MeshBasicMaterial).opacity = 0.35 + envelope * 0.6;
-      (signal.glow.material as THREE.MeshBasicMaterial).opacity = envelope * 0.34;
+      signal.mesh.scale.setScalar(0.7 + envelope * 1.9);
+      (signal.mesh.material as THREE.MeshBasicMaterial).opacity = 0.5 + envelope * 0.5;
+      (signal.glow.material as THREE.MeshBasicMaterial).opacity = envelope * 0.6;
       if (progress >= 1) {
         this.scene.remove(signal.mesh);
         return false;
@@ -668,7 +680,8 @@ export class BrainSceneComponent implements AfterViewInit, OnChanges, OnDestroy 
       const hovered = this.hoveredRegion()?.id === id;
       return {
         id,
-        name: region.name,
+        name: region.nickname ?? region.name,
+        emoji: region.emoji ?? '',
         color: region.color,
         x: (position.x * 0.5 + 0.5) * bounds.width,
         y: (-position.y * 0.5 + 0.5) * bounds.height,

@@ -9,7 +9,7 @@
     </div>
 
     <label class="field">
-      <span>Scenario</span>
+      <span>Pick a story</span>
       <select
         [ngModel]="state.selectedScenarioId"
         (ngModelChange)="simulation.selectScenario($event)"
@@ -50,9 +50,9 @@
     </label>
 
     <div class="toggles">
-      <button type="button" [class.active]="state.labelsVisible" (click)="simulation.toggleLabels()">Labels</button>
-      <button type="button" [class.active]="state.pathwaysVisible" (click)="simulation.togglePathways()">Pathways</button>
-      <button type="button" [class.active]="state.explanationMode" (click)="simulation.toggleExplanationMode()">Explain</button>
+      <button type="button" [class.active]="state.labelsVisible" (click)="simulation.toggleLabels()">Names</button>
+      <button type="button" [class.active]="state.pathwaysVisible" (click)="simulation.togglePathways()">Wires</button>
+      <button type="button" [class.active]="state.explanationMode" (click)="simulation.toggleExplanationMode()">Help</button>
     </div>
   </section>
 }

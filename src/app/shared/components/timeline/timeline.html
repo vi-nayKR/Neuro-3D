@@ -22,7 +22,7 @@
         <div>
           <strong>{{ step.title }}</strong>
           <p>{{ step.description }}</p>
-          <small>{{ step.status }}</small>
+          <small>{{ step.status === 'active' ? 'now' : step.status === 'completed' ? 'done' : 'next' }}</small>
         </div>
       </article>
     }

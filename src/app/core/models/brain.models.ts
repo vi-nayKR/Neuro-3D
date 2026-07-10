@@ -10,6 +10,8 @@ export interface Vector3Tuple {
 export interface BrainRegion {
   id: string;
   name: string;
+  nickname?: string;
+  emoji?: string;
   shortDescription: string;
   role: string;
   position: Vector3Tuple;
