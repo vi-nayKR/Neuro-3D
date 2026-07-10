@@ -5,10 +5,11 @@ import { BrainPathway } from '../../../core/models/brain.models';
 import { BrainDataService } from '../../../core/services/brain-data.service';
 import { BrainSimulationService } from '../../../core/services/brain-simulation.service';
 import { BrainStateService } from '../../../core/services/brain-state.service';
+import { TranslatePipe } from '../../../core/i18n/translate.pipe';
 
 @Component({
   selector: 'app-explanation-panel',
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   templateUrl: './explanation-panel.html',
   styleUrl: './explanation-panel.scss'
 })

@@ -14,6 +14,9 @@ Tagline: An interactive 3D journey through how the brain receives, processes, re
 - Memory module with weak and strong pathway visualization.
 - Decision-making module with safe, risky, and unknown road-crossing outcomes.
 - Responsive dark neuroscience-style interface with high-contrast text and reduced-motion handling.
+- Responsive layouts for phones from 320px, tablets, laptops, and large desktop displays.
+- Local English/Kannada localization with a persisted language preference and no translation API.
+- Accessible mobile navigation with keyboard support.
 
 ## Tech Stack
 
@@ -29,6 +32,7 @@ Tagline: An interactive 3D journey through how the brain receives, processes, re
 ```text
 src/app/
   core/
+    i18n/
     models/
     services/
   shared/
@@ -44,12 +48,22 @@ src/app/
     decision-making/
     simulation/
   layout/
+    footer/
     navbar/
     shell/
 public/assets/
   data/
   models/
   textures/
+```
+
+Deployment files:
+
+```text
+public/_redirects   Angular SPA route fallback
+public/_headers     Cloudflare cache and security headers
+wrangler.toml       Cloudflare Pages output configuration
+AGENTS.md           Project development and verification rules
 ```
 
 ## Install
@@ -73,6 +87,50 @@ npm run build
 ```
 
 Angular persistent cache is disabled in `angular.json` because the local environment hit a native cache abort during builds. The production build succeeds with cache disabled.
+
+The deployable browser bundle is generated at:
+
+```text
+dist/neuroflow-3d/browser
+```
+
+## Test
+
+```bash
+npm test -- --watch=false
+```
+
+## Deploy to Cloudflare Pages
+
+### Cloudflare Dashboard
+
+1. Push the repository to GitHub.
+2. In Cloudflare, open **Workers & Pages**, select **Create**, then connect the Git repository.
+3. Use these build settings:
+   - Framework preset: `Angular`
+   - Build command: `npm run build`
+   - Build output directory: `dist/neuroflow-3d/browser`
+   - Node.js version: `22`
+4. Deploy the project.
+
+`public/_redirects` is copied into the production bundle and returns `index.html` for client-side Angular routes such as `/memory` and `/simulation`. `public/_headers` adds security headers and caching for hashed JavaScript and CSS assets.
+
+### Wrangler CLI
+
+The checked-in `wrangler.toml` points to the Angular browser output. After authenticating Wrangler, build and deploy with:
+
+```bash
+npm run build
+npx wrangler pages deploy
+```
+
+Cloudflare preview deployments can use the same output directory. Do not change the Pages output to `dist/neuroflow-3d`; `index.html` is inside its `browser` subdirectory.
+
+## Localization
+
+English and Kannada translations are stored locally under `src/app/core/i18n`. `LanguageService` owns the selected language, updates the document `lang` attribute, and persists the preference in `localStorage`. User-facing component and data text is rendered through `TranslatePipe`.
+
+When adding visible English copy, add a natural Kannada entry to `KANNADA_TRANSLATIONS` and render the text with the translation pipe. Keep product names, paths, IDs, URLs, and code identifiers unchanged.
 
 ## Routes
 
@@ -136,9 +194,12 @@ Edit `public/assets/data/simulation-scenarios.json` and add a scenario with orde
 }
 ```
 
-The scenario dropdown will pick it up automatically.
+The scenario cards will pick it up automatically. Add Kannada translations for the scenario and step copy in `src/app/core/i18n/translations.ts`.
 
 ## Portfolio Notes
 
-This project demonstrates a production-style frontend architecture: standalone Angular components, lazy routes, strongly typed domain models, local data-driven content, RxJS state flow, WebGL rendering with Three.js, responsive SCSS, and accessible controls. The brain geometry is intentionally placeholder-based so the app runs without external model downloads while still showing polished 3D interaction and educational signal flow.
-# Neuro-3D
+This project demonstrates a production-style frontend architecture: standalone Angular components, lazy routes, strongly typed domain models, local data-driven content, RxJS state flow, WebGL rendering with Three.js, responsive SCSS, local bilingual content, accessible controls, and Cloudflare Pages deployment. The brain geometry is intentionally placeholder-based so the app runs without external model downloads while still showing polished 3D interaction and educational signal flow.
+
+## Credits
+
+Developed by Vinay. Copyright 2026.

@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "skills": {
+    "angular-developer": {
+      "source": "affaan-m/ECC",
+      "sourceType": "github",
+      "skillPath": "skills/angular-developer/SKILL.md",
+      "computedHash": "426a527c6bbb67cddc3fcad2add109280e364aca5e8b4d4305bbda9538cdaecc"
+    }
+  }
+}

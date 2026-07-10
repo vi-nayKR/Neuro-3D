@@ -1,20 +1,20 @@
 <section class="page-grid">
   <div class="intro page-header">
     <p class="eyebrow">NeuroFlow 3D</p>
-    <h2>An interactive 3D journey through how the brain receives, processes, remembers, and decides.</h2>
+    <h2>{{ 'An interactive 3D journey through how the brain receives, processes, remembers, and decides.' | translate }}</h2>
     <p class="lede">
-      Explore a glowing brain map, click regions for plain-language explanations, and run animated signal flows that connect perception, memory, emotion, planning, and action.
+      {{ 'Explore a glowing brain map, click regions for plain-language explanations, and run animated signal flows that connect perception, memory, emotion, planning, and action.' | translate }}
     </p>
-    <div class="stats" aria-label="Project stats">
+    <div class="stats" [attr.aria-label]="'Project stats' | translate">
       @for (stat of stats; track stat.label) {
-        <span><strong>{{ stat.value }}</strong>{{ stat.label }}</span>
+        <span><strong>{{ stat.value }}</strong>{{ stat.label | translate }}</span>
       }
     </div>
-    <div class="highlight-grid" aria-label="Learning highlights">
+    <div class="highlight-grid" [attr.aria-label]="'Learning highlights' | translate">
       @for (highlight of highlights; track highlight.title) {
         <article>
-          <h3>{{ highlight.title }}</h3>
-          <p>{{ highlight.body }}</p>
+          <h3>{{ highlight.title | translate }}</h3>
+          <p>{{ highlight.body | translate }}</p>
         </article>
       }
     </div>

@@ -223,12 +223,21 @@
   .region-label.is-selected,
   .region-label.is-hovered {
     display: grid;
-    max-width: 12rem;
+    min-width: 0;
+    max-width: min(12rem, 72vw);
     white-space: normal;
   }
 
   .label-heading strong {
     font-size: 0.72rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .scene-badge {
+    top: 0.65rem;
+    left: 0.65rem;
+    max-width: calc(100% - 1.3rem);
   }
 }
 

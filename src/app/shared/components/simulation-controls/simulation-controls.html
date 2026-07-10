@@ -1,22 +1,22 @@
 @if (state$ | async; as state) {
-  <section class="control-card glass-card" aria-label="Simulation controls">
+  <section class="control-card glass-card" [attr.aria-label]="'Simulation controls' | translate">
     <div class="control-head">
-      <p>Simulation</p>
+      <p>{{ 'Simulation' | translate }}</p>
       <span class="status-chip" [attr.data-status]="state.status">
         <i></i>
-        {{ state.status }}
+        {{ state.status | translate }}
       </span>
     </div>
 
     <div class="field">
-      <span>Pick a story</span>
-      <div class="story-grid" role="list" aria-label="Simulation stories">
+      <span>{{ 'Pick a story' | translate }}</span>
+      <div class="story-grid" role="list" [attr.aria-label]="'Simulation stories' | translate">
         @for (scenario of (scenarios$ | async) ?? []; track scenario.id; let index = $index) {
           <button type="button" class="story-card" [class.active]="scenario.id === state.selectedScenarioId"
             [attr.aria-pressed]="scenario.id === state.selectedScenarioId" (click)="simulation.selectScenario(scenario.id)">
             <span class="story-number">0{{ index + 1 }}</span>
-            <strong>{{ scenario.name }}</strong>
-            <small>{{ scenario.steps.length }} brain signals</small>
+            <strong>{{ scenario.name | translate }}</strong>
+            <small>{{ scenario.steps.length }} {{ 'brain signals' | translate }}</small>
           </button>
         }
       </div>
@@ -24,21 +24,21 @@
 
     <div class="button-grid">
       @if (state.status === 'running') {
-        <button type="button" class="primary" (click)="simulation.pause()" aria-label="Pause simulation">
-          Pause
+        <button type="button" class="primary" (click)="simulation.pause()" [attr.aria-label]="'Pause simulation' | translate">
+          {{ 'Pause' | translate }}
         </button>
       } @else {
-        <button type="button" class="primary" (click)="simulation.start()" aria-label="Start simulation">
-          {{ state.status === 'paused' ? 'Resume' : state.status === 'completed' ? 'Replay' : 'Start' }}
+        <button type="button" class="primary" (click)="simulation.start()" [attr.aria-label]="'Start simulation' | translate">
+          {{ (state.status === 'paused' ? 'Resume' : state.status === 'completed' ? 'Replay' : 'Start') | translate }}
         </button>
       }
-      <button type="button" (click)="simulation.reset()" aria-label="Reset simulation">Reset</button>
-      <button type="button" (click)="simulation.stepBackward()" aria-label="Step backward">&larr; Back</button>
-      <button type="button" (click)="simulation.stepForward()" aria-label="Step forward">Forward &rarr;</button>
+      <button type="button" (click)="simulation.reset()" [attr.aria-label]="'Reset simulation' | translate">{{ 'Reset' | translate }}</button>
+      <button type="button" (click)="simulation.stepBackward()" [attr.aria-label]="'Step backward' | translate">&larr; {{ 'Back' | translate }}</button>
+      <button type="button" (click)="simulation.stepForward()" [attr.aria-label]="'Step forward' | translate">{{ 'Forward' | translate }} &rarr;</button>
     </div>
 
     <label class="field">
-      <span>Speed <em>{{ state.speed | number: '1.1-1' }}x</em></span>
+      <span>{{ 'Speed' | translate }} <em>{{ state.speed | number: '1.1-1' }}x</em></span>
       <input
         type="range"
         min="0.5"
@@ -46,14 +46,14 @@
         step="0.5"
         [ngModel]="state.speed"
         (ngModelChange)="simulation.setSpeed(+$event)"
-        aria-label="Simulation speed"
+        [attr.aria-label]="'Simulation speed' | translate"
       />
     </label>
 
     <div class="toggles">
-      <button type="button" [class.active]="state.labelsVisible" (click)="simulation.toggleLabels()">Names</button>
-      <button type="button" [class.active]="state.pathwaysVisible" (click)="simulation.togglePathways()">Wires</button>
-      <button type="button" [class.active]="state.explanationMode" (click)="simulation.toggleExplanationMode()">Help</button>
+      <button type="button" [class.active]="state.labelsVisible" (click)="simulation.toggleLabels()">{{ 'Names' | translate }}</button>
+      <button type="button" [class.active]="state.pathwaysVisible" (click)="simulation.togglePathways()">{{ 'Wires' | translate }}</button>
+      <button type="button" [class.active]="state.explanationMode" (click)="simulation.toggleExplanationMode()">{{ 'Help' | translate }}</button>
     </div>
   </section>
 }

@@ -1,14 +1,14 @@
 @if (selectedDecision$ | async; as selectedDecision) {
   <section class="decision-layout">
     <header class="page-header">
-      <p class="eyebrow">Decision making</p>
-      <h1>Choose a road-crossing scenario and watch evidence, memory, emotion, and logic converge.</h1>
+      <p class="eyebrow">{{ 'Decision making' | translate }}</p>
+      <h1>{{ 'Choose a road-crossing scenario and watch evidence, memory, emotion, and logic converge.' | translate }}</h1>
       <p class="lede">
-        Each choice highlights a different balance of sensory confidence, remembered rules, emotional urgency, and prefrontal planning before action is prepared.
+        {{ 'Each choice highlights a different balance of sensory confidence, remembered rules, emotional urgency, and prefrontal planning before action is prepared.' | translate }}
       </p>
     </header>
 
-    <div class="choice-row" aria-label="Decision scenario choices">
+    <div class="choice-row" [attr.aria-label]="'Decision scenario choices' | translate">
       @for (decision of (decisions$ | async) ?? []; track decision.id) {
         <button
           type="button"
@@ -16,8 +16,8 @@
           (click)="runDecision(decision)"
           [attr.aria-pressed]="decision.id === selectedDecision.id"
         >
-          <strong>{{ decision.name }}</strong>
-          <span>{{ decision.description }}</span>
+          <strong>{{ decision.name | translate }}</strong>
+          <span>{{ decision.description | translate }}</span>
         </button>
       }
     </div>
@@ -26,31 +26,31 @@
 
     <aside>
       <article class="output-card glass-card">
-        <span class="eyebrow">Final decision output</span>
-        <h2>{{ selectedDecision.output.finalAction }}</h2>
-        <p class="decision-summary">{{ selectedDecision.description }}</p>
-        <div class="decision-badges" aria-label="Decision factors">
-          <span>Sensory</span>
-          <span>Memory</span>
-          <span>Emotion</span>
-          <span>Logic</span>
+        <span class="eyebrow">{{ 'Final decision output' | translate }}</span>
+        <h2>{{ selectedDecision.output.finalAction | translate }}</h2>
+        <p class="decision-summary">{{ selectedDecision.description | translate }}</p>
+        <div class="decision-badges" [attr.aria-label]="'Decision factors' | translate">
+          <span>{{ 'Sensory' | translate }}</span>
+          <span>{{ 'Memory' | translate }}</span>
+          <span>{{ 'Emotion' | translate }}</span>
+          <span>{{ 'Logic' | translate }}</span>
         </div>
         <dl>
           <div>
-            <dt>Sensory evidence</dt>
-            <dd>{{ selectedDecision.output.sensoryEvidence }}</dd>
+            <dt>{{ 'Sensory evidence' | translate }}</dt>
+            <dd>{{ selectedDecision.output.sensoryEvidence | translate }}</dd>
           </div>
           <div>
-            <dt>Memory influence</dt>
-            <dd>{{ selectedDecision.output.memoryInfluence }}</dd>
+            <dt>{{ 'Memory influence' | translate }}</dt>
+            <dd>{{ selectedDecision.output.memoryInfluence | translate }}</dd>
           </div>
           <div>
-            <dt>Emotional influence</dt>
-            <dd>{{ selectedDecision.output.emotionalInfluence }}</dd>
+            <dt>{{ 'Emotional influence' | translate }}</dt>
+            <dd>{{ selectedDecision.output.emotionalInfluence | translate }}</dd>
           </div>
           <div>
-            <dt>Logical evaluation</dt>
-            <dd>{{ selectedDecision.output.logicalEvaluation }}</dd>
+            <dt>{{ 'Logical evaluation' | translate }}</dt>
+            <dd>{{ selectedDecision.output.logicalEvaluation | translate }}</dd>
           </div>
         </dl>
       </article>

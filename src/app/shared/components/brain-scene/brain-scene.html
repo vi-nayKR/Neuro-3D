@@ -1,9 +1,9 @@
-<section class="brain-stage" #stage aria-label="Interactive 3D brain visualization">
+<section class="brain-stage" #stage [attr.aria-label]="'Interactive 3D brain visualization' | translate">
   <canvas
     #canvas
     class="brain-canvas"
     tabindex="0"
-    aria-label="3D brain scene. Drag to rotate and click glowing regions for details."
+    [attr.aria-label]="'3D brain scene. Drag to rotate and click glowing regions for details.' | translate"
     (pointermove)="onPointerMove($event)"
     (pointerdown)="onPointerDown()"
     (pointerleave)="onPointerLeave()"
@@ -20,9 +20,9 @@
         [style.--label-color]="label.color"
         [style.transform]="'translate3d(' + label.x + 'px,' + label.y + 'px,0)'"
       >
-        <span class="label-heading"><em class="label-emoji">{{ label.emoji }}</em><strong>{{ label.name }}</strong></span>
+        <span class="label-heading"><em class="label-emoji">{{ label.emoji }}</em><strong>{{ label.name | translate }}</strong></span>
         @if (label.nickname) {
-          <small>{{ label.nickname }}</small>
+          <small>{{ label.nickname | translate }}</small>
         }
       </span>
     }
@@ -30,7 +30,7 @@
 
   <div class="scene-badge">
     <span></span>
-    Your brain, up close
+    {{ 'Your brain, up close' | translate }}
   </div>
 
   <div
@@ -40,10 +40,10 @@
     aria-live="polite"
   >
     @if (hoveredRegion(); as region) {
-      <strong>{{ region.emoji }} {{ region.nickname ?? region.name }}</strong>
-      <span>{{ region.shortDescription }}</span>
+      <strong>{{ region.emoji }} {{ (region.nickname ?? region.name) | translate }}</strong>
+      <span>{{ region.shortDescription | translate }}</span>
     } @else {
-      <span class="idle-hint">Drag to spin the head &middot; scroll in to zoom through the skull and reveal the brain &middot; tap a glowing dot to explore it</span>
+      <span class="idle-hint">{{ 'Drag to spin the head · scroll in to zoom through the skull and reveal the brain · tap a glowing dot to explore it' | translate }}</span>
     }
   </div>
 </section>

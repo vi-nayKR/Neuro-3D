@@ -1,18 +1,25 @@
 <header class="navbar">
   <div class="navbar-inner">
-    <a class="brand" routerLink="/overview" aria-label="NeuroFlow 3D overview">
+    <a class="brand" routerLink="/overview" [attr.aria-label]="'NeuroFlow 3D overview' | translate">
       <span class="brand-mark"></span>
       <span>
         <strong>NeuroFlow 3D</strong>
-        <small>Interactive brain signal simulator</small>
+        <small>{{ 'Interactive brain signal simulator' | translate }}</small>
       </span>
     </a>
 
-    <nav aria-label="Primary navigation">
+    <div class="navbar-actions">
+      <button type="button" class="language-toggle" (click)="language.toggle()" [attr.aria-label]="language.language() === 'en' ? 'ಕನ್ನಡಕ್ಕೆ ಬದಲಿಸಿ' : 'Switch to English'">
+        {{ language.language() === 'en' ? 'ಕನ್ನಡ' : 'English' }}
+      </button>
+      <button type="button" class="menu-toggle" (click)="toggleMenu()" [attr.aria-expanded]="menuOpen()" aria-controls="primary-navigation" aria-label="Toggle navigation menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <nav id="primary-navigation" [class.open]="menuOpen()" [attr.aria-label]="'Primary navigation' | translate">
       @for (link of links; track link.path) {
-        <a [routerLink]="link.path" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">{{ link.label }}</a>
+        <a [routerLink]="link.path" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" (click)="closeMenu()">{{ link.label | translate }}</a>
       }
     </nav>
   </div>
 </header>
-

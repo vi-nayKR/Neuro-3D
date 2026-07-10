@@ -138,3 +138,9 @@ small {
     transition: none;
   }
 }
+
+@media (max-width: 480px) {
+  .timeline { padding: 0.7rem; }
+  .steps { grid-auto-columns: minmax(82vw, 1fr); }
+  .timeline-step { min-height: auto; }
+}

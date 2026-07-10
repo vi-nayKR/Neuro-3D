@@ -205,6 +205,10 @@ aside {
   .memory-tools {
     grid-template-columns: 1fr;
   }
+
+  app-brain-scene { height: clamp(380px, 56vh, 500px); }
+
+  .memory-tools button { min-height: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {

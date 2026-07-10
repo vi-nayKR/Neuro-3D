@@ -19,6 +19,7 @@ import { AnimationService } from '../../../core/services/animation.service';
 import { BrainDataService } from '../../../core/services/brain-data.service';
 import { BrainSimulationService } from '../../../core/services/brain-simulation.service';
 import { BrainStateService } from '../../../core/services/brain-state.service';
+import { TranslatePipe } from '../../../core/i18n/translate.pipe';
 
 interface RegionMesh extends THREE.Mesh {
   userData: {
@@ -148,7 +149,7 @@ function wrinkledSphere(radius: number, amplitude: number, frequency: number): T
 
 @Component({
   selector: 'app-brain-scene',
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   templateUrl: './brain-scene.html',
   styleUrl: './brain-scene.scss'
 })

@@ -8,10 +8,11 @@ import { BrainSceneComponent } from '../../shared/components/brain-scene/brain-s
 import { ExplanationPanelComponent } from '../../shared/components/explanation-panel/explanation-panel';
 import { SimulationControlsComponent } from '../../shared/components/simulation-controls/simulation-controls';
 import { TimelineComponent } from '../../shared/components/timeline/timeline';
+import { TranslatePipe } from '../../core/i18n/translate.pipe';
 
 @Component({
   selector: 'app-decision-making',
-  imports: [AsyncPipe, BrainSceneComponent, ExplanationPanelComponent, SimulationControlsComponent, TimelineComponent],
+  imports: [AsyncPipe, BrainSceneComponent, ExplanationPanelComponent, SimulationControlsComponent, TimelineComponent, TranslatePipe],
   templateUrl: './decision-making.html',
   styleUrl: './decision-making.scss'
 })

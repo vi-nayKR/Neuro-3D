@@ -229,7 +229,7 @@ input[type='range']::-moz-range-thumb {
 }
 
 button {
-  min-height: 2.35rem;
+  min-height: 2.75rem;
   border: 1px solid rgba(167, 139, 250, 0.22);
   border-radius: var(--radius-sm);
   background: rgba(33, 25, 61, 0.86);
@@ -307,4 +307,11 @@ button.primary:focus-visible {
   button.story-card {
     min-height: 5rem;
   }
+
+  .button-grid,
+  .toggles {
+    grid-template-columns: 1fr;
+  }
+
+  .control-card { padding: 0.85rem; }
 }

@@ -1,4 +1,6 @@
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -39,13 +41,16 @@
 }
 
 html {
+  width: 100%;
+  max-width: 100%;
   color-scheme: dark;
   background: var(--bg);
   scroll-behavior: smooth;
 }
 
 body {
-  min-width: 320px;
+  width: 100%;
+  max-width: 100%;
   min-height: 100vh;
   margin: 0;
   background:
@@ -69,8 +74,30 @@ h3 {
 
 button,
 input,
-select {
+select,
+textarea {
+  max-width: 100%;
   font: inherit;
+}
+
+img,
+video,
+canvas,
+svg,
+iframe {
+  max-width: 100%;
+}
+
+p,
+h1,
+h2,
+h3,
+button,
+a,
+dd,
+dt,
+span {
+  overflow-wrap: anywhere;
 }
 
 button:focus-visible,
@@ -149,6 +176,18 @@ input:focus-visible {
   color: var(--text-2);
   font-size: clamp(0.98rem, 1.4vw, 1.1rem);
   line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .page-header h1 {
+    font-size: clamp(1.65rem, 7vw, 2.35rem);
+    line-height: 1.12;
+  }
+
+  .page-header .lede {
+    font-size: 0.95rem;
+    line-height: 1.55;
+  }
 }
 
 /* Route enter animation (paired with router view transitions).

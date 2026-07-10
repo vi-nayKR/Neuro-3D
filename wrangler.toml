@@ -1,0 +1,3 @@
+name = "neuroflow-3d"
+pages_build_output_dir = "./dist/neuroflow-3d/browser"
+compatibility_date = "2026-07-11"

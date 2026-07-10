@@ -2,10 +2,11 @@ import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild, inject } from '@angular/core';
 import { Subscription, map } from 'rxjs';
 import { BrainSimulationService } from '../../../core/services/brain-simulation.service';
+import { TranslatePipe } from '../../../core/i18n/translate.pipe';
 
 @Component({
   selector: 'app-timeline',
-  imports: [CommonModule],
+  imports: [CommonModule, TranslatePipe],
   templateUrl: './timeline.html',
   styleUrl: './timeline.scss'
 })

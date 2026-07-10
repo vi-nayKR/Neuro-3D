@@ -1,4 +1,4 @@
-<section class="timeline glass-card" aria-label="Simulation timeline">
+<section class="timeline glass-card" [attr.aria-label]="'Simulation timeline' | translate">
   <div class="progress-track" aria-hidden="true">
     <div class="progress-fill" [style.width.%]="((progress$ | async) ?? 0) * 100"></div>
   </div>
@@ -11,7 +11,7 @@
         tabindex="0"
         [class.active]="step.status === 'active'"
         [class.completed]="step.status === 'completed'"
-        [attr.aria-label]="'Go to step ' + step.order + ': ' + step.title"
+        [attr.aria-label]="('Go to step' | translate) + ' ' + step.order + ': ' + (step.title | translate)"
         (click)="simulation.goToStep($index)"
         (keydown.enter)="simulation.goToStep($index)"
         (keydown.space)="$event.preventDefault(); simulation.goToStep($index)"
@@ -26,9 +26,9 @@
           }
         </span>
         <div>
-          <strong>{{ step.title }}</strong>
-          <p>{{ step.description }}</p>
-          <small>{{ step.status === 'active' ? 'now' : step.status === 'completed' ? 'done' : 'next' }}</small>
+          <strong>{{ step.title | translate }}</strong>
+          <p>{{ step.description | translate }}</p>
+          <small>{{ (step.status === 'active' ? 'now' : step.status === 'completed' ? 'done' : 'next') | translate }}</small>
         </div>
       </article>
     }

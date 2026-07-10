@@ -104,3 +104,8 @@ aside {
     padding-right: 0;
   }
 }
+
+@media (max-width: 768px) {
+  app-brain-scene { height: clamp(380px, 56vh, 500px); }
+  .briefing-grid article { min-height: auto; }
+}

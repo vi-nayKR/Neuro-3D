@@ -1,0 +1,36 @@
+:host {
+  display: block;
+  border-top: 1px solid var(--border-soft);
+}
+
+footer {
+  display: flex;
+  width: 100%;
+  max-width: 1680px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-inline: auto;
+  padding: 1rem clamp(1rem, 3vw, 2rem);
+  color: var(--text-3);
+  font-size: 0.78rem;
+}
+
+p {
+  margin: 0;
+}
+
+strong,
+.footer-brand {
+  color: var(--text-2);
+  font-weight: 600;
+}
+
+@media (max-width: 480px) {
+  footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 0.85rem 0.75rem;
+  }
+}

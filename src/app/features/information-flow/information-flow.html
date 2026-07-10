@@ -1,25 +1,25 @@
 <section class="feature-layout">
   <header class="page-header">
-    <p class="eyebrow">Information flow</p>
-    <h1>See how a red apple becomes meaning, context, decision, and action.</h1>
+    <p class="eyebrow">{{ 'Information flow' | translate }}</p>
+    <h1>{{ 'See how a red apple becomes meaning, context, decision, and action.' | translate }}</h1>
     @if (scenario$ | async; as scenario) {
-      <p class="lede">{{ scenario.summary }}</p>
+      <p class="lede">{{ scenario.summary | translate }}</p>
     }
   </header>
 
   @if (scenario$ | async; as scenario) {
-    <section class="flow-brief glass-card" aria-label="Scenario information">
+    <section class="flow-brief glass-card" [attr.aria-label]="'Scenario information' | translate">
       <div>
-        <span class="eyebrow">Scenario</span>
-        <h2>{{ scenario.scenario }}</h2>
+        <span class="eyebrow">{{ 'Scenario' | translate }}</span>
+        <h2>{{ scenario.scenario | translate }}</h2>
       </div>
       <p>
-        The animation starts with sensory input, routes through visual processing, checks memory and emotional relevance, then reaches planning and action systems.
+        {{ 'The animation starts with sensory input, routes through visual processing, checks memory and emotional relevance, then reaches planning and action systems.' | translate }}
       </p>
       <div class="flow-metrics">
-        <span><strong>{{ scenario.steps.length }}</strong> processing stages</span>
-        <span><strong>6</strong> major handoffs</span>
-        <span><strong>3</strong> evidence layers</span>
+        <span><strong>{{ scenario.steps.length }}</strong> {{ 'processing stages' | translate }}</span>
+        <span><strong>6</strong> {{ 'major handoffs' | translate }}</span>
+        <span><strong>3</strong> {{ 'evidence layers' | translate }}</span>
       </div>
     </section>
   }

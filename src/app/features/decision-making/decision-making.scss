@@ -189,6 +189,10 @@ aside {
   .choice-row {
     grid-template-columns: 1fr;
   }
+
+  app-brain-scene { height: clamp(380px, 56vh, 500px); }
+
+  .choice-row button { min-height: auto; }
 }
 
 @media (prefers-reduced-motion: reduce) {

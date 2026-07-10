@@ -126,7 +126,12 @@ app-brain-scene {
 }
 
 @media (max-width: 760px) {
+  .intro { min-height: auto; }
   .side {
     grid-template-columns: 1fr;
   }
+
+  app-brain-scene { height: clamp(380px, 56vh, 500px); }
+
+  .stats span { flex: 1 1 9rem; }
 }
