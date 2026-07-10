@@ -60,9 +60,9 @@ public/assets/
 Deployment files:
 
 ```text
-public/_redirects   Angular SPA route fallback
-public/_headers     Cloudflare cache and security headers
-wrangler.toml       Cloudflare Pages output configuration
+public/_redirects   Optional fallback metadata in the browser bundle
+public/_headers     Static cache and security-header metadata
+wrangler.toml       Cloudflare Workers Static Assets configuration
 AGENTS.md           Project development and verification rules
 ```
 
@@ -102,22 +102,24 @@ dist/neuroflow-3d/browser
 npm test -- --watch=false
 ```
 
-## Deploy to Cloudflare Pages
+## Deploy to Cloudflare Workers
+
+The production project is a Cloudflare Worker named `neuro3d`. Angular is deployed with [Workers Static Assets](https://developers.cloudflare.com/workers/static-assets/) and is available on the project's `workers.dev` domain.
 
 ### Cloudflare Dashboard
 
 1. Push the repository to GitHub.
-2. In Cloudflare, open **Workers & Pages**, select **Create**, then connect the Git repository.
+2. In Cloudflare, open **Workers & Pages**, select the `neuro3d` Worker, and connect the Git repository under **Settings → Builds**.
 3. Use these build settings:
-   - Framework preset: `Angular`
    - Build command: `npm run build`
-   - Build output directory: `dist/neuroflow-3d/browser`
+   - Deploy command: `npx wrangler deploy`
+   - Root directory: `/`
    - Node.js version: `22.22.3`
 4. Deploy the project.
 
-`public/_redirects` is copied into the production bundle and returns `index.html` for client-side Angular routes such as `/memory` and `/simulation`. `public/_headers` adds security headers and caching for hashed JavaScript and CSS assets.
+`wrangler.toml` uploads `dist/neuroflow-3d/browser` as static assets. Its `single-page-application` fallback returns `index.html` for client-side Angular routes such as `/memory` and `/simulation`.
 
-Cloudflare Pages reads `.node-version` automatically. If the project has a `NODE_VERSION` environment variable configured in the dashboard, set it to `22.22.3` or remove it so the repository pin is used.
+Cloudflare Builds reads `.node-version` automatically. If the project has a `NODE_VERSION` environment variable configured in the dashboard, set it to `22.22.3` or remove it so the repository pin is used.
 
 ### Wrangler CLI
 
@@ -125,12 +127,10 @@ The checked-in `wrangler.toml` points to the Angular browser output. After authe
 
 ```bash
 npm run build
-npx wrangler pages deploy dist/neuroflow-3d/browser --project-name=neuro3d
+npx wrangler deploy
 ```
 
-Cloudflare preview deployments can use the same output directory. Do not change the Pages output to `dist/neuroflow-3d`; `index.html` is inside its `browser` subdirectory.
-
-The Cloudflare Pages project name is `neuro3d`. The Angular package remains `neuroflow-3d`, which is why the generated output path includes `dist/neuroflow-3d/browser`.
+Do not change the asset directory to `dist/neuroflow-3d`; `index.html` is inside its `browser` subdirectory. The Worker name is `neuro3d`, while the Angular package remains `neuroflow-3d`.
 
 ## Localization
 

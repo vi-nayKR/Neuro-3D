@@ -24,6 +24,6 @@
 
 ## Deployment
 
-- Cloudflare Pages serves `dist/neuroflow-3d/browser`.
-- Keep `public/_redirects` so Angular deep links fall back to `index.html`.
-- Keep deployment configuration in `wrangler.toml` aligned with Angular's output directory.
+- Cloudflare Workers Static Assets serves `dist/neuroflow-3d/browser`.
+- Keep `assets.not_found_handling` set to `single-page-application` so Angular deep links resolve to `index.html`.
+- Keep the Workers deploy command as `npx wrangler deploy` and the asset directory aligned with Angular's output directory.

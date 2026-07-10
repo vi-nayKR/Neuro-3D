@@ -1,3 +1,6 @@
 name = "neuro3d"
-pages_build_output_dir = "./dist/neuroflow-3d/browser"
 compatibility_date = "2026-07-11"
+
+[assets]
+directory = "./dist/neuroflow-3d/browser"
+not_found_handling = "single-page-application"
