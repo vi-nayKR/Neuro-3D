@@ -47,6 +47,7 @@ interface SignalObject {
 interface RegionLabel {
   id: string;
   name: string;
+  nickname: string;
   emoji: string;
   color: string;
   x: number;
@@ -346,9 +347,9 @@ export class BrainSceneComponent implements AfterViewInit, OnChanges, OnDestroy 
         this.updateLabels();
 
         // One comet per step change (guard stops duplicates from hover/select emissions).
-        if (activeStep?.nextRegionId && !this.reducedMotion && activeStep.id !== this.lastSignalStepId) {
+        if (state.status === 'running' && activeStep?.nextRegionId && !this.reducedMotion && activeStep.id !== this.lastSignalStepId) {
           this.lastSignalStepId = activeStep.id;
-          this.spawnSignal(activeStep.regionId, activeStep.nextRegionId, regions);
+          this.spawnSignal(activeStep.regionId, activeStep.nextRegionId, regions, this.simulation.stepDurationMs(state.speed));
         }
         if (!activeStep) {
           this.lastSignalStepId = null;
@@ -526,7 +527,7 @@ export class BrainSceneComponent implements AfterViewInit, OnChanges, OnDestroy 
     });
   }
 
-  private spawnSignal(fromRegionId: string, toRegionId: string, regions: BrainRegion[]): void {
+  private spawnSignal(fromRegionId: string, toRegionId: string, regions: BrainRegion[], stepDurationMs: number): void {
     const from = regions.find((region) => region.id === fromRegionId);
     const to = regions.find((region) => region.id === toRegionId);
     if (!from || !to) {
@@ -557,7 +558,7 @@ export class BrainSceneComponent implements AfterViewInit, OnChanges, OnDestroy 
     mesh.add(glow);
     mesh.position.copy(curve.getPoint(0));
     this.scene.add(mesh);
-    this.signals.push({ mesh, glow, curve, startTime: performance.now(), duration: 1500 });
+    this.signals.push({ mesh, glow, curve, startTime: performance.now(), duration: stepDurationMs * 0.82 });
 
     if (this.signals.length > 10) {
       const stale = this.signals.shift();
@@ -680,7 +681,8 @@ export class BrainSceneComponent implements AfterViewInit, OnChanges, OnDestroy 
       const hovered = this.hoveredRegion()?.id === id;
       return {
         id,
-        name: region.nickname ?? region.name,
+        name: region.name,
+        nickname: region.nickname ?? '',
         emoji: region.emoji ?? '',
         color: region.color,
         x: (position.x * 0.5 + 0.5) * bounds.width,

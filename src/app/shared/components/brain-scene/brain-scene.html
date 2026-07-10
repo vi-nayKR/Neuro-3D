@@ -20,7 +20,10 @@
         [style.--label-color]="label.color"
         [style.transform]="'translate3d(' + label.x + 'px,' + label.y + 'px,0)'"
       >
-        <em class="label-emoji">{{ label.emoji }}</em>{{ label.name }}
+        <span class="label-heading"><em class="label-emoji">{{ label.emoji }}</em><strong>{{ label.name }}</strong></span>
+        @if (label.nickname) {
+          <small>{{ label.nickname }}</small>
+        }
       </span>
     }
   </div>

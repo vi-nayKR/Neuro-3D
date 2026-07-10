@@ -8,18 +8,19 @@
       </span>
     </div>
 
-    <label class="field">
+    <div class="field">
       <span>Pick a story</span>
-      <select
-        [ngModel]="state.selectedScenarioId"
-        (ngModelChange)="simulation.selectScenario($event)"
-        aria-label="Select simulation scenario"
-      >
-        @for (scenario of (scenarios$ | async) ?? []; track scenario.id) {
-          <option [value]="scenario.id">{{ scenario.name }}</option>
+      <div class="story-grid" role="list" aria-label="Simulation stories">
+        @for (scenario of (scenarios$ | async) ?? []; track scenario.id; let index = $index) {
+          <button type="button" class="story-card" [class.active]="scenario.id === state.selectedScenarioId"
+            [attr.aria-pressed]="scenario.id === state.selectedScenarioId" (click)="simulation.selectScenario(scenario.id)">
+            <span class="story-number">0{{ index + 1 }}</span>
+            <strong>{{ scenario.name }}</strong>
+            <small>{{ scenario.steps.length }} brain signals</small>
+          </button>
         }
-      </select>
-    </label>
+      </div>
+    </div>
 
     <div class="button-grid">
       @if (state.status === 'running') {
@@ -28,7 +29,7 @@
         </button>
       } @else {
         <button type="button" class="primary" (click)="simulation.start()" aria-label="Start simulation">
-          {{ state.status === 'paused' ? 'Resume' : 'Start' }}
+          {{ state.status === 'paused' ? 'Resume' : state.status === 'completed' ? 'Replay' : 'Start' }}
         </button>
       }
       <button type="button" (click)="simulation.reset()" aria-label="Reset simulation">Reset</button>

@@ -136,6 +136,47 @@ select:focus-visible {
   box-shadow: var(--glow-accent);
 }
 
+.story-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem;
+}
+
+button.story-card {
+  display: grid;
+  min-height: 6.4rem;
+  align-content: space-between;
+  justify-items: start;
+  padding: 0.7rem;
+  text-align: left;
+}
+
+.story-card strong {
+  color: var(--text-1);
+  font-size: 0.76rem;
+  line-height: 1.3;
+}
+
+.story-card small,
+.story-number {
+  color: var(--text-3);
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.story-card.active .story-number,
+.story-card.active small {
+  color: var(--green);
+}
+
+.story-card.active {
+  border-color: rgba(94, 234, 212, 0.55);
+  background: linear-gradient(145deg, rgba(94, 234, 212, 0.13), rgba(167, 139, 250, 0.12));
+  box-shadow: 0 0 20px rgba(94, 234, 212, 0.08);
+}
+
 input[type='range'] {
   height: 1.4rem;
   appearance: none;
@@ -255,5 +296,15 @@ button.primary:focus-visible {
 
   .status-chip i {
     animation: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .story-grid {
+    grid-template-columns: 1fr;
+  }
+
+  button.story-card {
+    min-height: 5rem;
   }
 }

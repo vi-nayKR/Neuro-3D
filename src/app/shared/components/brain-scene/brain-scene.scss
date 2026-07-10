@@ -54,12 +54,14 @@
   position: absolute;
   left: 0;
   top: 0;
-  padding: 0.32rem 0.48rem;
+  display: grid;
+  gap: 0.12rem;
+  min-width: max-content;
+  padding: 0.4rem 0.55rem;
   border: 1px solid color-mix(in srgb, var(--label-color), transparent 45%);
   border-radius: 8px;
   background: rgba(14, 10, 27, 0.74);
   color: var(--text-1);
-  font-size: clamp(0.68rem, 1vw, 0.78rem);
   white-space: nowrap;
   opacity: 1;
   translate: -50% calc(-100% - 0.9rem);
@@ -67,8 +69,26 @@
   transition: opacity 200ms var(--ease-out), scale 260ms var(--ease-spring), background 200ms var(--ease-out);
 }
 
+.label-heading {
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.label-heading strong {
+  color: var(--text-1);
+  font-size: clamp(0.68rem, 1vw, 0.78rem);
+  font-weight: 700;
+}
+
+.region-label small {
+  padding-left: 1.35rem;
+  color: var(--text-3);
+  font-size: 0.58rem;
+  letter-spacing: 0.02em;
+}
+
 .label-emoji {
-  margin-right: 0.28rem;
   font-style: normal;
 }
 
@@ -191,9 +211,24 @@
     min-height: 0;
   }
 
-  .region-label,
   .scene-hint {
     display: none;
+  }
+
+  .region-label {
+    display: none;
+  }
+
+  .region-label.is-active,
+  .region-label.is-selected,
+  .region-label.is-hovered {
+    display: grid;
+    max-width: 12rem;
+    white-space: normal;
+  }
+
+  .label-heading strong {
+    font-size: 0.72rem;
   }
 }
 

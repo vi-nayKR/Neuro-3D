@@ -12,7 +12,8 @@ import { BrainSimulationService } from '../../../core/services/brain-simulation.
 export class TimelineComponent implements AfterViewInit, OnDestroy {
   @ViewChild('scroller') private readonly scrollerRef?: ElementRef<HTMLElement>;
 
-  readonly timeline$ = inject(BrainSimulationService).timeline$;
+  readonly simulation = inject(BrainSimulationService);
+  readonly timeline$ = this.simulation.timeline$;
   readonly progress$ = this.timeline$.pipe(
     map((steps) => {
       if (steps.length <= 1) {

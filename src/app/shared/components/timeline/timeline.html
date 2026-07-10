@@ -7,8 +7,14 @@
     @for (step of timeline$ | async; track step.id) {
       <article
         class="timeline-step"
+        role="button"
+        tabindex="0"
         [class.active]="step.status === 'active'"
         [class.completed]="step.status === 'completed'"
+        [attr.aria-label]="'Go to step ' + step.order + ': ' + step.title"
+        (click)="simulation.goToStep($index)"
+        (keydown.enter)="simulation.goToStep($index)"
+        (keydown.space)="$event.preventDefault(); simulation.goToStep($index)"
       >
         <span class="number">
           @if (step.status === 'completed') {
